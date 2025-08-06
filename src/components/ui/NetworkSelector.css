@@ -1,0 +1,137 @@
+/* Network Selector Styles */
+.network-selector-container {
+  position: relative;
+}
+
+.network-selector-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f8f9fa;
+  border: 1px solid #e7e3eb;
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #280d5f;
+  font-family: inherit;
+}
+
+.network-selector-trigger:hover {
+  background: #ebebeb;
+  border-color: #1fc7d4;
+}
+
+.network-dropdown-arrow {
+  transition: transform 0.2s ease;
+  color: #7a6eaa;
+}
+
+.network-dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.network-dropdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.network-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e7e3eb;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 200px;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.network-dropdown-header {
+  padding: 16px 16px 8px 16px;
+  border-bottom: 1px solid #e7e3eb;
+}
+
+.network-dropdown-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #280d5f;
+  margin: 0;
+}
+
+.network-list {
+  padding: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.network-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  background: none;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #280d5f;
+  position: relative;
+}
+
+.network-option:hover {
+  background: rgba(31, 199, 212, 0.1);
+}
+
+.network-option.selected {
+  background: rgba(31, 199, 212, 0.15);
+  color: #1fc7d4;
+}
+
+.network-selected-indicator {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .network-dropdown {
+    left: 0;
+    right: 0;
+    min-width: auto;
+  }
+  
+  .network-selector-trigger {
+    padding: 3px 6px;
+    font-size: 0.7rem;
+  }
+  
+  .network-selector-trigger img {
+    width: 14px;
+    height: 14px;
+  }
+}

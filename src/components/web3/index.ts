@@ -1,3 +1,6 @@
 export { ConnectWallet } from './ConnectWallet'
 export { WalletInfo } from './WalletInfo'
 export { ChainSwitcher } from './ChainSwitcher'
+export { Portfolio } from './Portfolio'
+export { TransactionHistory } from './TransactionHistory'
+export { AdvancedSwap } from './AdvancedSwap'

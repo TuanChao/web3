@@ -1,5 +1,4 @@
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card'
-import { WalletInfo, ChainSwitcher } from '../components/web3'
+import QuickActions from '../components/QuickAction/QuickActions'
 import { Header } from '../components/ui/Header'
 import './HomePage.css'
 import TokenSwap from './Swaptoken'
@@ -33,38 +32,10 @@ export function HomePage() {
         </section>
 
         {/* Section 2: Quick Actions */}
-        <section className="actions-section">
-          <h2 className="section-title">Quick Actions</h2>
-          <div className="actions-grid">
-            <Card className="action-card swap-card">
-              <CardHeader>
-                <CardTitle>🔄 Token Swap</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>Exchange tokens instantly with the best rates across multiple DEXs.</p>
-                <a href="/swap" className="action-btn">Start Trading</a>
-              </CardContent>
-            </Card>
-            
-            <Card className="action-card wallet-card">
-              <CardHeader>
-                <CardTitle>👛 Wallet Manager</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <WalletInfo />
-              </CardContent>
-            </Card>
-            
-            <Card className="action-card network-card">
-              <CardHeader>
-                <CardTitle>🌐 Network Switch</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ChainSwitcher />
-              </CardContent>
-            </Card>
-          </div>
+        <section>
+          <QuickActions />
         </section>
+        
 
         {/* Section 3: Platform Features */}
         <section className="features-section">

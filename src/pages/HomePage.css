@@ -136,13 +136,13 @@
 /* Section 2: Quick Actions */
 .actions-section {
   min-height: 100vh;
+  min-width: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  max-width: 1200px;
   margin: 0 auto;
   padding: 80px 24px;
 }

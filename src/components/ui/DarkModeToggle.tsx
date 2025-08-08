@@ -40,20 +40,22 @@ export function DarkModeToggle() {
       <div className={`toggle-container ${isDark ? 'dark' : 'light'}`}>
         <div className="toggle-slider">
           {isDark ? (
-            <svg className="toggle-icon moon" width="12" height="12" viewBox="0 0 16 16">
-              <path 
-                d="M6 0.5C6 0.5 6 3 8 5S13.5 6 13.5 6S13.5 6 11.5 8S6 13.5 6 13.5S6 13.5 4 11.5S-1.5 6 -1.5 6S-1.5 6 0.5 4S6 0.5 6 0.5Z" 
-                fill="currentColor"
-              />
+            <svg className="toggle-icon moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" fill="currentColor" stroke="currentColor"/>
             </svg>
           ) : (
-            <svg className="toggle-icon sun" width="12" height="12" viewBox="0 0 16 16">
-              <circle cx="8" cy="8" r="3" fill="currentColor"/>
-              <path 
-                d="M8 1V3M8 13V15M15 8H13M3 8H1M12.5 3.5L11.5 4.5M4.5 11.5L3.5 12.5M12.5 12.5L11.5 11.5M4.5 4.5L3.5 3.5" 
-                stroke="currentColor" 
-                strokeWidth="2"
-              />
+            <svg className="toggle-icon sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="5" fill="currentColor" stroke="currentColor"/>
+              <g stroke="currentColor">
+                <line x1="12" y1="1.5" x2="12" y2="4" />
+                <line x1="12" y1="20" x2="12" y2="22.5" />
+                <line x1="4.22" y1="4.22" x2="5.99" y2="5.99" />
+                <line x1="18.01" y1="18.01" x2="19.78" y2="19.78" />
+                <line x1="1.5" y1="12" x2="4" y2="12" />
+                <line x1="20" y1="12" x2="22.5" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.99" y2="18.01" />
+                <line x1="18.01" y1="5.99" x2="19.78" y2="4.22" />
+              </g>
             </svg>
           )}
         </div>

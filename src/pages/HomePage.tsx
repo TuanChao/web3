@@ -1,11 +1,58 @@
 import QuickActions from '../components/QuickAction/QuickActions'
-import { Header } from '../components/ui/Header'
 import './HomePage.css'
-import TokenSwap from './Swaptoken'
+import { useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export function HomePage() {
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useLayoutEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // Hero intro (no vertical motion)
+      gsap.set(['.hero-title', '.hero-desc', '.hero-stats .stat-item'], { autoAlpha: 0 });
+      gsap.to('.hero-title', { autoAlpha: 1, duration: 0.5, ease: 'power2.out' });
+      gsap.to('.hero-desc', { autoAlpha: 1, duration: 0.5, delay: 0.1, ease: 'power2.out' });
+      gsap.fromTo(
+        '.hero-stats .stat-item',
+        { autoAlpha: 0, scale: 0.96 },
+        { autoAlpha: 1, scale: 1, duration: 0.4, stagger: 0.08, delay: 0.2, ease: 'power2.out' }
+      );
+
+      // QuickActions wrapper fade-in (component handles its own internal anims)
+      gsap.fromTo(
+        '.quick-actions-wrapper',
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: 0.4, ease: 'power2.out', delay: 0.1 }
+      );
+
+      // Features reveal on scroll (fade + subtle scale)
+      gsap.set('.features-section .feature-item', { autoAlpha: 0 });
+      gsap.fromTo(
+        '.features-section .feature-item',
+        { autoAlpha: 0, scale: 0.98 },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          duration: 0.4,
+          stagger: 0.06,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.features-section', start: 'top 80%' }
+        }
+      );
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="homepage-bg">
+    <div className="homepage-bg" ref={rootRef}>
       <main className="homepage-main">
         {/* Section 1: Hero Welcome */}
         <section className="hero-section">
@@ -32,7 +79,7 @@ export function HomePage() {
         </section>
 
         {/* Section 2: Quick Actions */}
-        <section>
+        <section className="quick-actions-wrapper quick-actions-100vh">
           <QuickActions />
         </section>
         

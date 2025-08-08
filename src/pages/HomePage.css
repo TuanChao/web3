@@ -223,7 +223,7 @@
 }
 
 .action-card:hover {
-  transform: translateY(-8px);
+  transform: scale(1.02);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
 }
 
@@ -295,7 +295,7 @@
 
 .feature-item:hover {
   background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-8px);
+  transform: scale(1.02);
   border-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -341,6 +341,43 @@
 
 :root.dark-theme .feature-desc {
   color: rgba(255, 255, 255, 0.7);
+}
+
+/* Compact 100vh preset for QuickActions on homepage */
+.quick-actions-100vh {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.quick-actions-100vh .quick-actions-section {
+  /* lock to viewport height and remove internal scroll */
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+/* Force ultra-compact grid inside QuickActions when in 100vh wrapper */
+.quick-actions-100vh .actions-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 0.5rem !important;
+}
+
+/* Hide non-essential elements to keep within one screen */
+.quick-actions-100vh .stats-badges,
+.quick-actions-100vh .bottom-cta {
+  display: none !important;
+}
+
+/* Clamp description to 1 line in the 100vh preset */
+.quick-actions-100vh .card-description {
+  -webkit-line-clamp: 1 !important;
+  line-clamp: 1 !important;
+}
+
+/* Slightly reduce stat value font for tighter fit */
+.quick-actions-100vh .stats-value {
+  font-size: 0.8125rem !important;
 }
 
 /* Responsive Design */

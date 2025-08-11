@@ -73,13 +73,12 @@
   --bg-secondary: #1a202c;
   --text-primary: #ffffff;
   --text-secondary: #a0aec0;
-  --border-color: #2d3748;
-  --header-bg: #1a202c;
+  /* Legacy variables removed - using theme system */
 }
 
 .dark-theme .header {
-  background: var(--header-bg);
-  border-bottom-color: var(--border-color);
+  background: var(--bg-elevated);
+  border-bottom-color: var(--border-primary);
   color: var(--text-primary);
 }
 
@@ -102,7 +101,7 @@
 
 .dark-theme .network-selector-trigger {
   background: var(--bg-secondary);
-  border-color: var(--border-color);
+  border-color: var(--border-primary);
   color: var(--text-primary);
 }
 
@@ -112,7 +111,7 @@
 
 .dark-theme .network-dropdown {
   background: var(--bg-secondary);
-  border-color: var(--border-color);
+  border-color: var(--border-primary);
 }
 
 .dark-theme .network-dropdown-header h3 {

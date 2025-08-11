@@ -40,7 +40,7 @@
 
 .feature-card {
   background: var(--bg-secondary, #f8f9fa);
-  border: 1px solid var(--border-color, #e7e3eb);
+  border: 1px solid var(--border-primary);
   border-radius: 16px;
   padding: 2rem;
   text-align: center;

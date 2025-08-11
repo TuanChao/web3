@@ -1,0 +1,38 @@
+/* Homepage New - Clean Section-based Layout */
+.homepage-new {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  transition: all 0.3s ease;
+}
+
+.homepage-main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Spacing */
+.homepage-main > * + * {
+  border-top: 1px solid var(--border-primary);
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dark Theme */
+.dark-theme .homepage-new {
+  background: var(--bg-primary);
+}
+
+/* Remove default margins from sections */
+.homepage-main section {
+  margin: 0;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

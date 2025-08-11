@@ -1,0 +1,363 @@
+/* Advanced Features Section - Sticky Scroll & CSS Grid Responsive */
+
+/* CSS Custom Properties for Dynamic Styling */
+:root {
+  --navbar-height: 80px;
+  --padding-md: 2rem;
+  --insight-card-height: 85vh;
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-300: #d1d5db;
+  --color-red: #E84142;
+  --base: 1rem;
+  --xl: 1.25rem;
+  --md: 0.75rem;
+  --feature-scale: 1;
+  --feature-rotate: 0deg;
+  --feature-blur: 0px;
+  --animation-duration: 0.7s;
+  --animation-delay: 0s;
+  --progress-width: 0%;
+}
+
+/* Advanced Sticky Positioning System */
+.feature-card {
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--padding-md) + var(--offset));
+  transform: 
+    scale(var(--feature-scale)) 
+    rotate(var(--feature-rotate))
+    perspective(1000px) rotateX(0deg);
+  filter: blur(var(--feature-blur));
+  z-index: calc(100 - var(--index));
+  transition: 
+    transform var(--animation-duration) cubic-bezier(0.4, 0, 0.2, 1),
+    filter var(--animation-duration) ease-out,
+    box-shadow var(--animation-duration) ease-out;
+  will-change: transform, filter, box-shadow;
+  contain: layout style paint;
+  transform-origin: center center;
+}
+
+/* Hover Effects for Feature Cards */
+.feature-card:hover {
+  --feature-scale: 1.01;
+  --feature-rotate: -1deg;
+  box-shadow: 
+    0 20px 40px rgba(232, 65, 66, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS Grid Responsive Layout */
+@media (min-width: 1024px) {
+  .feature-card {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+}
+
+/* Mobile Layout - Single Column */
+@media (max-width: 1023px) {
+  .feature-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    min-height: auto;
+    position: relative !important;
+    top: auto !important;
+    transform: none !important;
+    z-index: auto !important;
+  }
+  
+  .feature-card:hover {
+    --feature-scale: 1;
+    --feature-rotate: 0deg;
+    box-shadow: 0 10px 20px rgba(232, 65, 66, 0.1);
+  }
+}
+
+/* Progress Bar Animation */
+@keyframes progressFill {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  100% {
+    width: var(--progress-width, 100%);
+    opacity: 1;
+  }
+}
+
+.feature-card:hover .progress-bar {
+  animation: progressFill 1s ease-out forwards;
+}
+
+/* Advanced Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -15px, 0);
+  }
+  70% {
+    transform: translate3d(0, -7px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+/* Utility Animation Classes */
+.animate-fadeIn {
+  animation: fadeIn var(--animation-duration) ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft var(--animation-duration) ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight var(--animation-duration) ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn var(--animation-duration) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* Animation Delays */
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-500 { animation-delay: 0.5s; }
+
+/* Grid Background Pattern */
+.bg-grid-gray-100 {
+  background-image: 
+    linear-gradient(rgba(156, 163, 175, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(156, 163, 175, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .bg-grid-gray-800\/20 {
+  background-image: 
+    linear-gradient(rgba(55, 65, 81, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(55, 65, 81, 0.2) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glass Morphism Effects */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px) saturate(180%);
+}
+
+/* Gradient Text Animation */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+/* Feature Icon Hover Effects */
+.feature-icon {
+  transition: 
+    transform var(--animation-duration) cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter var(--animation-duration) ease-out;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 10px 20px rgba(232, 65, 66, 0.3));
+}
+
+/* Badge Animations */
+.feature-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.5s ease-in-out;
+}
+
+.feature-badge:hover::before {
+  left: 100%;
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  :root {
+    --navbar-height: 60px;
+    --padding-md: 1rem;
+    --base: 0.875rem;
+    --xl: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --navbar-height: 50px;
+    --padding-md: 0.75rem;
+    --animation-duration: 0.4s;
+  }
+}
+
+/* Performance Optimizations */
+.feature-card,
+.feature-icon,
+.animate-fadeIn,
+.animate-slideInLeft,
+.animate-slideInRight,
+.animate-scaleIn {
+  will-change: transform, opacity;
+}
+
+/* Accessibility - Respect User Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .feature-icon,
+  .animate-fadeIn,
+  .animate-slideInLeft,
+  .animate-slideInRight,
+  .animate-scaleIn,
+  .animate-pulse,
+  .animate-bounce,
+  .animate-gradient {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .feature-card:hover {
+    --feature-scale: 1;
+    --feature-rotate: 0deg;
+    transform: none !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .feature-card {
+    border: 2px solid var(--color-red);
+  }
+  
+  .backdrop-blur-sm {
+    backdrop-filter: none;
+    background-color: white;
+  }
+  
+  .dark .backdrop-blur-sm {
+    background-color: black;
+  }
+}
+
+/* Dark Mode Specific Enhancements */
+.dark .feature-card:hover {
+  box-shadow: 
+    0 20px 40px rgba(232, 65, 66, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .bg-grid-gray-800\/20 {
+  opacity: 0.5;
+}
+
+/* Loading States */
+.feature-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.dark .feature-loading {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+}

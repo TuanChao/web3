@@ -149,7 +149,7 @@
 /* Dark theme support */
 .dark-theme .language-selector-trigger {
   background: var(--bg-secondary);
-  border-color: var(--border-color);
+  border-color: var(--border-primary);
   color: var(--text-primary);
 }
 
@@ -159,7 +159,7 @@
 
 .dark-theme .language-dropdown {
   background: var(--bg-secondary);
-  border-color: var(--border-color);
+  border-color: var(--border-primary);
 }
 
 .dark-theme .language-dropdown-header h3 {

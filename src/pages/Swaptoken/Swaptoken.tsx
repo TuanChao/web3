@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Swaptoken.css';
-import { BsArrowDownUp } from "react-icons/bs";
+import './PancakeSwap.css';
+import { ChevronDownIcon, ArrowDownIcon, SettingsIcon, SearchIcon, CloseIcon } from '../../components/ui/Icons';
 
 
 interface Token {
@@ -28,7 +29,6 @@ const TokenSwap: React.FC = () => {
   const [isTokenModalOpen, setIsTokenModalOpen] = useState<boolean>(false);
   const [tokenSelectType, setTokenSelectType] = useState<'from' | 'to'>('from');
   const [isSwapping, setIsSwapping] = useState<boolean>(false);
-  const [focusedInput, setFocusedInput] = useState<string>('');
 
   const tokens: Token[] = [
     { symbol: 'ETH', name: 'Ethereum', balance: '1.234', address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2' },
@@ -81,183 +81,218 @@ const TokenSwap: React.FC = () => {
 
     setIsSwapping(true);
     
-    // Simulate swap process
+    // Mock swap process - no wallet connection required
     setTimeout(() => {
-      alert(`Swapped ${fromAmount} ${fromToken.symbol} for ${toAmount || 'calculated'} ${toToken.symbol}`);
+      alert(`✅ Mock Swap Successful!\n${fromAmount} ${fromToken.symbol} → ${toAmount || 'calculated'} ${toToken.symbol}\n\n(This is a demo - no real transaction)`);
       setIsSwapping(false);
       setFromAmount('');
       setToAmount('');
-    }, 2000);
+    }, 1500);
   };
 
-  // Simulate price calculation
+  // Mock price calculation - no API calls needed
   useEffect(() => {
     if (fromAmount && !isNaN(parseFloat(fromAmount))) {
-      const rate = Math.random() * 2000 + 1000; // Random rate for demo
+      // Simulate exchange rate calculation
+      const mockRates: { [key: string]: number } = {
+        'ETH-USDC': 2500,
+        'ETH-BTC': 0.065,
+        'BTC-ETH': 15.4,
+        'BTC-USDC': 38500,
+        'USDC-ETH': 0.0004,
+        'USDC-BTC': 0.000026
+      };
+      
+      const rateKey = `${fromToken.symbol}-${toToken.symbol}`;
+      const rate = mockRates[rateKey] || Math.random() * 2000 + 100;
       const calculated = (parseFloat(fromAmount) * rate).toFixed(6);
       setToAmount(calculated);
     } else {
       setToAmount('');
     }
-  }, [fromAmount, fromToken, toToken]);
+  }, [fromAmount, fromToken.symbol, toToken.symbol]);
 
-  const newLocal = <BsArrowDownUp className="text-xl ml-2" />;
   return (
-    <div className="token-swap-container">
-      <div className="swap-card">
-        <div className="swap-header">
-          <h2>Swap</h2>
-          <div className="swap-settings">
-            <button className="settings-btn">⚙️</button>
+    <div className="pancake-swap-container">
+      <div className="pancake-swap-card">
+        {/* Header */}
+        <div className="pancake-header">
+          <h1 className="pancake-title">Swap</h1>
+          <div className="pancake-settings">
+            <button className="settings-button" title="Settings">
+              <SettingsIcon size={20} />
+            </button>
           </div>
         </div>
 
-        <div className="swap-body">
-          {/* From Section */}
-          <div className="swap-section">
-            <div className="section-header">
-              <span className="section-label">From</span>
-              <span className="balance">Balance: {fromToken.balance}</span>
+        {/* Main Swap Interface */}
+        <div className="pancake-swap-body">
+          {/* From Token Section */}
+          <div className="pancake-token-section">
+            <div className="token-section-header">
+              <span className="token-label">From</span>
+              <span className="token-balance">Balance: {fromToken.balance}</span>
             </div>
-            <div className={`swap-input-container ${focusedInput === 'from' ? 'focused' : ''}`}>
+            <div className="pancake-input-container">
               <input
-                type="number"
-                placeholder="0"
+                type="text"
+                className="pancake-amount-input"
+                placeholder="0.0"
                 value={fromAmount}
                 onChange={(e) => setFromAmount(e.target.value)}
-                onFocus={() => setFocusedInput('from')}
-                onBlur={() => setFocusedInput('')}
-                className="swap-input"
               />
-              <div className="token-selector" onClick={() => openTokenModal('from')}>
-                <div className="token-info">
+              <button 
+                className="pancake-token-selector"
+                onClick={() => openTokenModal('from')}
+              >
+                <div className="token-display">
                   <img 
                     src={getTokenIcon(fromToken)} 
                     alt={fromToken.symbol}
-                    className="token-icon"
+                    className="token-logo"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${fromToken.symbol.charAt(0)}</text></svg>`;
+                      target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23${Math.floor(Math.random()*16777215).toString(16)}"/><text x="50%" y="50%" text-anchor="middle" dy="0.3em" font-size="40" fill="white">${fromToken.symbol.charAt(0)}</text></svg>`;
                     }}
                   />
                   <span className="token-symbol">{fromToken.symbol}</span>
+                  <ChevronDownIcon className="dropdown-icon" size={16} />
                 </div>
-                <span className="dropdown-arrow">▼</span>
-              </div>
+              </button>
             </div>
-            <div className="usd-value">~$0.00</div>
+            <div className="token-usd-value">
+              {fromAmount ? `~$${(parseFloat(fromAmount) * 2500).toFixed(2)}` : '~$0.00'}
+            </div>
           </div>
 
-          {/* Swap Button */}
-          <div className="swap-arrow-container">
-            <button className="swap-arrow-btn" onClick={swapTokens}>
-              <BsArrowDownUp className="text-xl ml-2" />
-              {/* <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
-                <path d="M7 16L3 12L7 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M17 8L21 12L17 16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg> */}
+          {/* Swap Arrow */}
+          <div className="pancake-swap-arrow">
+            <button className="swap-arrow-button" onClick={swapTokens}>
+              <ArrowDownIcon size={20} />
             </button>
           </div>
-          <div className="swap-arrow-line">
-            <div className="swap-arrow-line-segment" style={{width: 'calc(50% - 30px)'}} />
-            <div className="swap-arrow-line-segment" style={{width: 'calc(50% - 30px)'}} />
-          </div>
 
-          {/* To Section */}
-          <div className="swap-section">
-            <div className="section-header">
-              <span className="section-label">To</span>
-              <span className="balance">Balance: {toToken.balance}</span>
+          {/* To Token Section */}
+          <div className="pancake-token-section">
+            <div className="token-section-header">
+              <span className="token-label">To (estimate)</span>
+              <span className="token-balance">Balance: {toToken.balance}</span>
             </div>
-            <div className={`swap-input-container ${focusedInput === 'to' ? 'focused' : ''}`}>
+            <div className="pancake-input-container">
               <input
-                type="number"
-                placeholder="0"
+                type="text"
+                className="pancake-amount-input"
+                placeholder="0.0"
                 value={toAmount}
-                onChange={(e) => setToAmount(e.target.value)}
-                onFocus={() => setFocusedInput('to')}
-                onBlur={() => setFocusedInput('')}
-                className="swap-input"
                 readOnly
               />
-              <div className="token-selector" onClick={() => openTokenModal('to')}>
-                <div className="token-info">
+              <button 
+                className="pancake-token-selector"
+                onClick={() => openTokenModal('to')}
+              >
+                <div className="token-display">
                   <img 
                     src={getTokenIcon(toToken)} 
                     alt={toToken.symbol}
-                    className="token-icon"
+                    className="token-logo"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${toToken.symbol.charAt(0)}</text></svg>`;
+                      target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23${Math.floor(Math.random()*16777215).toString(16)}"/><text x="50%" y="50%" text-anchor="middle" dy="0.3em" font-size="40" fill="white">${toToken.symbol.charAt(0)}</text></svg>`;
                     }}
                   />
                   <span className="token-symbol">{toToken.symbol}</span>
+                  <ChevronDownIcon className="dropdown-icon" size={16} />
                 </div>
-                <span className="dropdown-arrow">▼</span>
-              </div>
+              </button>
             </div>
-            <div className="usd-value">~$0.00</div>
+            <div className="token-usd-value">
+              {toAmount ? `~$${(parseFloat(toAmount) * 1).toFixed(2)}` : '~$0.00'}
+            </div>
           </div>
 
           {/* Swap Details */}
-          {/* <div className="swap-details">
-            <div className="detail-row">
-              <span>Rate</span>
-              <span>1 {fromToken.symbol} = {Math.random().toFixed(4)} {toToken.symbol}</span>
+          {fromAmount && toAmount && (
+            <div className="pancake-swap-details">
+              <div className="swap-detail-row">
+                <span className="detail-label">Price</span>
+                <span className="detail-value">
+                  1 {fromToken.symbol} = {(parseFloat(toAmount) / parseFloat(fromAmount)).toFixed(4)} {toToken.symbol}
+                </span>
+              </div>
+              <div className="swap-detail-row">
+                <span className="detail-label">Price Impact</span>
+                <span className="detail-value price-impact-good">{'< 0.01%'}</span>
+              </div>
             </div>
-            <div className="detail-row">
-              <span>Network fee</span>
-              <span>~$2.50</span>
-            </div>
-          </div> */}
+          )}
 
           {/* Swap Button */}
           <button 
-            className={`swap-btn ${!fromAmount || isSwapping ? 'disabled' : ''}`}
+            className={`pancake-swap-button ${!fromAmount || isSwapping ? 'disabled' : ''}`}
             onClick={handleSwap}
             disabled={!fromAmount || isSwapping}
           >
-            {isSwapping ? 'Swapping...' : 'Swap'}
+            {isSwapping ? (
+              <div className="loading-spinner">
+                <div className="spinner"></div>
+                <span>Swapping...</span>
+              </div>
+            ) : (
+              'Swap'
+            )}
           </button>
         </div>
       </div>
 
       {/* Token Selection Modal */}
       {isTokenModalOpen && (
-        <div className="modal-overlay" onClick={() => setIsTokenModalOpen(false)}>
-          <div className="token-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>Select a token</h3>
-                <button className="close-btn" onClick={() => setIsTokenModalOpen(false)}><BsArrowDownUp className="text-xl ml-2" /></button>
-                {newLocal}
+        <div className="pancake-modal-overlay" onClick={() => setIsTokenModalOpen(false)}>
+          <div className="pancake-token-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="pancake-modal-header">
+              <h3>Select a Token</h3>
+              <button 
+                className="pancake-close-button" 
+                onClick={() => setIsTokenModalOpen(false)}
+              >
+                <CloseIcon size={20} />
+              </button>
             </div>
-            <div className="search-container">
-              <input type="text" placeholder="Search name or paste address" className="search-input" />
+            
+            <div className="pancake-search-container">
+              <div className="search-input-wrapper">
+                <SearchIcon className="search-icon" size={20} />
+                <input 
+                  type="text" 
+                  placeholder="Search name or paste address" 
+                  className="pancake-search-input" 
+                />
+              </div>
             </div>
-            <div className="token-list">
+
+            <div className="pancake-token-list">
               {tokens.map((token) => (
-                <div
+                <button
                   key={token.symbol}
-                  className="token-item"
+                  className="pancake-token-item"
                   onClick={() => selectToken(token)}
                 >
-                  <div className="token-item-info">
+                  <div className="token-item-left">
                     <img 
                       src={getTokenIcon(token)} 
                       alt={token.symbol}
-                      className="token-item-icon"
+                      className="token-item-logo"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${token.symbol.charAt(0)}</text></svg>`;
+                        target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23${Math.floor(Math.random()*16777215).toString(16)}"/><text x="50%" y="50%" text-anchor="middle" dy="0.3em" font-size="40" fill="white">${token.symbol.charAt(0)}</text></svg>`;
                       }}
                     />
-                    <div className="token-item-details">
+                    <div className="token-item-info">
                       <div className="token-item-symbol">{token.symbol}</div>
                       <div className="token-item-name">{token.name}</div>
                     </div>
                   </div>
                   <div className="token-item-balance">{token.balance}</div>
-                </div>
+                </button>
               ))}
             </div>
           </div>

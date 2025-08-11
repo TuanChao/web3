@@ -1,0 +1,419 @@
+/* Avalanche.network Style - Advanced Sticky Positioning & CSS Grid */
+
+/* Section Title Styles */
+.section-title {
+  margin-bottom: 4rem;
+  /* Bỏ sticky - để tiêu đề cố định ở đầu section */
+}
+
+.section-title span:first-of-type {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title span:last-of-type {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.section-title .relative {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* CSS Custom Properties for Dynamic Styling */
+:root {
+  --navbar-height: 80px;
+  --padding-md: 24px;
+  --insight-card-height: 600px;
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-300: #d1d5db;
+  --color-red: #E84142;
+  --base: 1rem;
+  --xl: 1.25rem;
+  --md: 0.75rem;
+  --transition-move: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dynamic Background Colors for Light/Dark Mode */
+.insight {
+  /* Light mode - use light gradients */
+  --bg-current: var(--bg-gradient-light);
+}
+
+.dark .insight {
+  /* Dark mode - use dark gradients */
+  --bg-current: var(--bg-gradient);
+}
+
+/* Card background styling - Light Mode */
+.insight > div:first-child {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px) saturate(180%);
+  border-radius: 1rem;
+}
+
+.insight:hover > div:first-child {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Icon Section Glass Effect - Light Mode */
+.insight > div:last-child {
+  backdrop-filter: blur(8px) saturate(200%);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.insight:hover > div:last-child {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Dark Mode Card Styling */
+.dark .insight > div:first-child {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.dark .insight:hover > div:first-child {
+  background: rgba(15, 23, 42, 0.98);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(148, 163, 184, 0.3);
+}
+
+.dark .insight > div:last-child {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.dark .insight:hover > div:last-child {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* Advanced Sticky Positioning System */
+.insight {
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--padding-md) + var(--offset));
+  height: calc(var(--insight-card-height) - var(--navbar-height) - var(--offset) - var(--padding-md) * 2);
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: stretch;
+  will-change: transform;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: var(--z-index, calc(100 + var(--index, 0))); /* Thẻ sau chồng lên thẻ trước */
+  contain: layout style paint;
+}
+
+/* Desktop Grid Layout */
+@media (min-width: 1024px) {
+  .insight {
+    grid-template-columns: 2fr 1.2fr;
+  }
+}
+
+/* Sticky Scroll Animation */
+.transition-move {
+  transition: var(--transition-move);
+}
+
+/* Feature Card Hover Effects */
+.insight:hover {
+  transform: scale(1.01) translateZ(0);
+  z-index: calc(var(--z-index, 100) + 50); /* Khi hover, z-index tăng cao để luôn ở trên cùng */
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Utility Classes using Tailwind-compatible syntax */
+.gap-base {
+  gap: var(--base, 1rem);
+}
+
+.gap-xl {
+  gap: var(--xl, 1.25rem);
+}
+
+.p-md {
+  padding: var(--md, 0.75rem);
+}
+
+.pr-4xl {
+  padding-right: calc(var(--base, 1rem) * 4);
+}
+
+.pr-lg {
+  padding-right: calc(var(--base, 1rem) * 1.5);
+}
+
+.mb-xl {
+  margin-bottom: var(--xl, 1.25rem);
+}
+
+.pl-0\.75 {
+  padding-left: 0.1875rem;
+}
+
+.pt-0\.75 {
+  padding-top: 0.1875rem;
+}
+
+.py-xs {
+  padding-top: calc(var(--base, 1rem) * 0.5);
+  padding-bottom: calc(var(--base, 1rem) * 0.5);
+}
+
+/* Typography Utilities */
+.xl {
+  font-size: var(--xl, 1.25rem);
+  line-height: 1.2;
+}
+
+.h1 {
+  font-size: clamp(2rem, 5vw, 7rem);
+  line-height: 0.8;
+  font-weight: 900;
+}
+
+/* Color System - Updated for proper contrast */
+.text-red {
+  color: var(--color-red, #E84142);
+}
+
+/* Background color utilities */
+.bg-\[var\(--bg-color\)\] {
+  background-color: var(--bg-color);
+}
+
+.fill-\[var\(--bg-color\)\] {
+  fill: var(--bg-color);
+}
+
+/* Border and Stroke Colors */
+.border-neutral-200 {
+  border-color: #e5e7eb;
+}
+
+.stroke-neutral-200 {
+  stroke: #e5e7eb;
+}
+
+/* Dark mode adjustments */
+.dark .border-neutral-200 {
+  border-color: #374151;
+}
+
+.dark .stroke-neutral-200 {
+  stroke: #374151;
+}
+
+/* Group State Classes for proper text colors */
+.group-\[\.colorful\]\/section\:text-white.text-gray-900 {
+  color: white !important;
+}
+
+.group-\[\.secondary\]\/insight\:text-neutral-400 {
+  color: #9ca3af;
+}
+
+/* Header slide animation */
+.group-visible\/section\:translate-x-0 {
+  transform: translateX(0);
+}
+
+/* Feature number styling */
+.insight .xl {
+  color: var(--color-red, #E84142);
+  opacity: 0.8;
+  font-weight: bold;
+}
+
+/* Title styling improvements */
+.insight h2 {
+  color: #1f2937;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Description text styling */
+.insight p {
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* Icon container improvements */
+.insight .w-20.h-20 {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.insight:hover .w-20.h-20 {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  :root {
+    --navbar-height: 60px;
+    --padding-md: 1.5rem;
+    --insight-card-height: auto;
+  }
+  
+  .insight {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    margin-bottom: 3rem;
+    z-index: auto !important;
+    grid-template-columns: 1fr;
+  }
+  
+  .gap-base {
+    gap: calc(var(--base, 1rem) * 0.75);
+  }
+  
+  .gap-xl {
+    gap: var(--base, 1rem);
+  }
+  
+  .h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+    line-height: 1.1;
+  }
+  
+  .insight > div {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 50px;
+    --padding-md: 1rem;
+  }
+  
+  .insight h2 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+  }
+  
+  .insight p {
+    font-size: 0.95rem;
+  }
+  
+  .insight .xl {
+    font-size: 1rem;
+  }
+}
+
+/* Performance Optimizations */
+.insight {
+  will-change: transform, box-shadow;
+  contain: layout style paint;
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .transition-move,
+  .insight,
+  .insight .w-20.h-20 {
+    transition: none !important;
+  }
+  
+  .insight:hover {
+    transform: none !important;
+  }
+}
+
+/* Dark Mode Enhancements */
+.dark .insight > div:first-child {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.dark .insight:hover > div:first-child {
+  background: rgba(15, 23, 42, 0.98);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(148, 163, 184, 0.3);
+}
+
+.dark .insight > div:last-child {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.dark .insight h2 {
+  color: #f9fafb;
+}
+
+.dark .insight p {
+  color: #d1d5db;
+}
+
+.dark .insight .xl {
+  color: var(--color-red, #E84142);
+}
+
+/* Smooth Scrolling Support */
+html {
+  scroll-behavior: smooth;
+}
+
+@supports (scroll-behavior: smooth) {
+  .insight {
+    scroll-margin-top: calc(var(--navbar-height) + 2rem);
+  }
+}
+
+/* Additional visual improvements */
+.insight {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* Gradient overlays for better visual hierarchy */
+.insight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.02) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.insight > * {
+  position: relative;
+  z-index: 2;
+}

@@ -1,0 +1,314 @@
+/* Features Section - Avax.network Style CSS */
+
+/* CSS Custom Properties */
+:root {
+  --navbar-height: 80px;
+  --padding-md: 2rem;
+  --insight-card-height: 80vh;
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-300: #d1d5db;
+  --color-red: #E84142;
+  --base: 1rem;
+  --xl: 1.25rem;
+  --md: 0.75rem;
+  --transition-move: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scroll Reveal Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header Reveal */
+.header-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-reveal.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-reveal span:first-child {
+  animation-delay: 0.1s;
+}
+
+.header-reveal span:last-child {
+  animation-delay: 0.3s;
+}
+
+/* Feature Card Reveal */
+.feature-card-reveal {
+  opacity: 0;
+  transform: translateY(80px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: var(--animation-delay, 0s);
+}
+
+.feature-card-reveal.animate-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Sticky Scroll Animation */
+.transition-move {
+  transition: var(--transition-move);
+}
+
+/* Insight Card Styles */
+.insight {
+  transition: all 0.3s ease;
+}
+
+.insight:hover {
+  transform: translateY(-2px);
+}
+
+/* Utility Classes */
+.gap-base {
+  gap: var(--base);
+}
+
+.gap-xl {
+  gap: var(--xl);
+}
+
+.p-md {
+  padding: var(--md);
+}
+
+.pr-4xl {
+  padding-right: calc(var(--base) * 4);
+}
+
+.pr-lg {
+  padding-right: calc(var(--base) * 1.5);
+}
+
+.mb-xl {
+  margin-bottom: var(--xl);
+}
+
+.pl-0\.75 {
+  padding-left: 0.1875rem;
+}
+
+.pt-0\.75 {
+  padding-top: 0.1875rem;
+}
+
+.py-xs {
+  padding-top: calc(var(--base) * 0.5);
+  padding-bottom: calc(var(--base) * 0.5);
+}
+
+/* Font Utilities */
+.xl {
+  font-size: var(--xl);
+  line-height: 1.2;
+}
+
+.font-aeonik {
+  font-family: 'Aeonik', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Color Classes */
+.text-red {
+  color: var(--color-red);
+}
+
+.bg-\[var\(--bg-color\)\] {
+  background-color: var(--bg-color);
+}
+
+.fill-\[var\(--bg-color\)\] {
+  fill: var(--bg-color);
+}
+
+.border-neutral-200 {
+  border-color: #e5e7eb;
+}
+
+.stroke-neutral-200 {
+  stroke: #e5e7eb;
+}
+
+/* Group Utilities */
+.group\/section.colorful .text-black {
+  color: white;
+}
+
+.group-\[\.colorful\]\/section\:text-white {
+  color: white;
+}
+
+.group-\[\.secondary\]\/insight\:text-neutral-400 {
+  color: #9ca3af;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  :root {
+    --navbar-height: 60px;
+    --padding-md: 1.5rem;
+    --insight-card-height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 50px;
+    --padding-md: 1rem;
+    --insight-card-height: auto;
+  }
+  
+  .insight {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+  }
+  
+  .gap-base {
+    gap: calc(var(--base) * 0.75);
+  }
+  
+  .gap-xl {
+    gap: var(--base);
+  }
+}
+
+/* Performance Optimizations */
+.insight {
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Enhanced Animations */
+.feature-card-reveal .feature-icon {
+  opacity: 0;
+  transform: translateY(20px) rotate(-10deg);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+}
+
+.feature-card-reveal.animate-in .feature-icon {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+.feature-card-reveal .feature-title {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+.feature-card-reveal.animate-in .feature-title {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.feature-card-reveal .feature-description {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+
+.feature-card-reveal.animate-in .feature-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Animation Delays */
+.feature-card-reveal:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.feature-card-reveal:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.feature-card-reveal:nth-child(3) {
+  transition-delay: 0.4s;
+}
+
+.feature-card-reveal:nth-child(4) {
+  transition-delay: 0.6s;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .transition-move,
+  .insight,
+  .header-reveal,
+  .feature-card-reveal {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .insight:hover {
+    transform: none;
+  }
+  
+  .feature-card-reveal .feature-icon,
+  .feature-card-reveal .feature-title,
+  .feature-card-reveal .feature-description {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .border-neutral-200 {
+    border-color: #374151;
+  }
+  
+  .stroke-neutral-200 {
+    stroke: #374151;
+  }
+}

@@ -1,7 +1,9 @@
 import MainLayout from "../components/layouts/MainLayout";
 import AboutPage from "../components/pages/About";
-import { HomePage } from '../pages/HomePage';
+import { HomePageNew } from '../pages/HomePageNew';
 import TokenSwap from '../pages/Swaptoken';
+import PancakeSwapStyle from '../components/web3/PancakeSwapStyle';
+import FeaturesDemo from '../pages/FeaturesDemo';
 import routesName from "./enum.routes";
 import type { IRouterData } from "./type.routes";
 
@@ -9,7 +11,7 @@ export const routesData: IRouterData[] = [
   {
     path: routesName.ROOT,
     layout: MainLayout,
-    component: () => <HomePage/>,
+    component: () => <HomePageNew/>,
   },
   {
     path: routesName.ABOUT,
@@ -24,7 +26,12 @@ export const routesData: IRouterData[] = [
   {
     path: routesName.SWAP,
     layout: MainLayout,
-    component: () => <TokenSwap/>,
+    component: () => <PancakeSwapStyle/>,
+  },
+  {
+    path: '/features',
+    layout: MainLayout,
+    component: () => <FeaturesDemo/>,
   },
   // Placeholder components for other routes
   {

@@ -6,6 +6,7 @@ import SuperSimpleSwap from '../components/Swap/SuperSimpleSwap';
 import SwapSimple from '../components/Swap/SwapSimple';
 import TestSwap from '../components/Swap/TestSwap';
 import SwapPageNew from '../components/Swap/SwapPageNew';
+import SwapPageModern from '../components/Swap/SwapPageModern';
 import FeaturesDemo from '../pages/FeaturesDemo';
 import routesName from "./enum.routes";
 import type { IRouterData } from "./type.routes";
@@ -24,7 +25,7 @@ export const routesData: IRouterData[] = [
   {
     path: routesName.TRADE,
     layout: MainLayout,
-    component: () => <SwapPageNew/>,
+    component: () => <SwapPageModern/>,
   },
   // {
   //   path: routesName.SWAP,

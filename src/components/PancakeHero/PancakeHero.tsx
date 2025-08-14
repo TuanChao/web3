@@ -87,14 +87,14 @@ export default function PancakeHero() {
       </div>
 
       {/* Floating Decorative Elements */}
-      <div className="floating-elements" ref={floatingRef}>
+      {/* <div className="floating-elements" ref={floatingRef}>
         <div className="floating-element coin coin-1">💰</div>
         <div className="floating-element coin coin-2">🔄</div>
         <div className="floating-element coin coin-3">⚡</div>
         <div className="floating-element star star-1">⭐</div>
         <div className="floating-element star star-2">✨</div>
         <div className="floating-element star star-3">💎</div>
-      </div>
+      </div> */}
 
       <div className="hero-container">
         {/* Left Content */}
@@ -126,75 +126,10 @@ export default function PancakeHero() {
               <Play className="play-icon" />
               <span>Trade Now</span>
             </button>
-          </div>
-
-          {/* Hero Stats */}
-          {/* <div className="hero-stats">
-            <div className="stat-item">
-              <div className="stat-icon tvl">
-                <DollarSign />
-              </div>
-              <div className="stat-content">
-                <div className="stat-value">${(stats.totalValueLocked / 1000000000).toFixed(2)}B</div>
-                <div className="stat-label">Total Value Locked</div>
-              </div>
-            </div>
-
-            <div className="stat-item">
-              <div className="stat-icon volume">
-                <TrendingUp />
-              </div>
-              <div className="stat-content">
-                <div className="stat-value">${(stats.volume24h / 1000000).toFixed(0)}M</div>
-                <div className="stat-label">24h Volume</div>
-              </div>
-            </div>
-
-            <div className="stat-item">
-              <div className="stat-icon users">
-                <Users />
-              </div>
-              <div className="stat-content">
-                <div className="stat-value">{(stats.totalUsers / 1000000).toFixed(1)}M</div>
-                <div className="stat-label">Total Users</div>
-              </div>
-            </div>
-          </div> */}
+          </div>          
         </div>
-
         {/* Right Mascot */}
-        <div className="hero-mascot" ref={mascotRef}>
-          <div className="mascot-container">
-            {/* Pancake Character */}
-            <div className="pancake-mascot">
-              <div className="pancake-body">
-                <div className="pancake-layer layer-1"></div>
-                <div className="pancake-layer layer-2"></div>
-                <div className="pancake-layer layer-3"></div>
-                <div className="syrup-drip"></div>
-              </div>
-              <div className="pancake-face">
-                <div className="eye eye-left"></div>
-                <div className="eye eye-right"></div>
-                <div className="mouth"></div>
-              </div>
-              <div className="pancake-chef-hat">
-                <div className="hat-body"></div>
-                <div className="hat-puff"></div>
-              </div>
-            </div>
-
-            {/* Decorative Elements around Mascot */}
-            <div className="mascot-decoration">
-              <div className="deco-circle circle-1"></div>
-              <div className="deco-circle circle-2"></div>
-              <div className="deco-circle circle-3"></div>
-              <div className="price-ticker">
-                
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
 
       {/* Scroll Indicator */}

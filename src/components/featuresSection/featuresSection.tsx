@@ -10,7 +10,6 @@ interface Feature {
   bgColor?: string;
 }
 
-// SVG Icons theo phong cách avax.network
 const FastSecureIcon = () => (
   <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M32 8L56 20V44L32 56L8 44V20L32 8Z" stroke="#E84142" strokeWidth="2" fill="none"/>
@@ -50,7 +49,7 @@ const features = [
     id: 'fast-powerful-secure',
     number: '01',
     title: 'Fast. Powerful. Secure.',
-    description: 'Lightning-fast transactions with institutional-grade security. Our advanced DeFi protocol ensures your swaps are processed in milliseconds while maintaining the highest security standards.',
+    description: 'Lightning-Fast Swaps in Seconds Experience the fastest token swapping in DeFi with our optimized smart contracts and advanced routing algorithms. Complete your trades in under 3 seconds with minimal slippage, even during high network congestion.Military-Grade Security Your funds are protected by audited smart contracts from leading security firms including CertiK and ConsenSys Diligence. Multi-signature wallets, time-lock mechanisms, and emergency pause functions ensure maximum protection against exploits.Ultra-Low Gas FeesOur innovative batching system and Layer 2 integration reduce gas costs by up to 90% compared to traditional DEXs. Enjoy micro-transactions without worrying about prohibitive fees eating into your profits.Cross-Chain CompatibilitySeamlessly swap tokens across 15+ blockchains including Ethereum, BSC, Polygon, Avalanche, Arbitrum, and Optimism. Our unified interface eliminates the complexity of managing multiple wallets and bridges.',
     icon: <FastSecureIcon />,
     bgColor: 'var(--color-neutral-50)',
   },

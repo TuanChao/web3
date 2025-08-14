@@ -129,7 +129,7 @@ export default function PancakeHero() {
           </div>
 
           {/* Hero Stats */}
-          <div className="hero-stats">
+          {/* <div className="hero-stats">
             <div className="stat-item">
               <div className="stat-icon tvl">
                 <DollarSign />
@@ -159,7 +159,7 @@ export default function PancakeHero() {
                 <div className="stat-label">Total Users</div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Right Mascot */}
@@ -190,11 +190,7 @@ export default function PancakeHero() {
               <div className="deco-circle circle-2"></div>
               <div className="deco-circle circle-3"></div>
               <div className="price-ticker">
-                <div className="ticker-item">
-                  <span className="ticker-symbol">CAKE</span>
-                  <span className="ticker-price">$2.45</span>
-                  <span className="ticker-change positive">+12.5%</span>
-                </div>
+                
               </div>
             </div>
           </div>

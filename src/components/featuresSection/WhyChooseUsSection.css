@@ -18,29 +18,19 @@
   font-weight: 900;
   letter-spacing: -0.01em;
   background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
-  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientShift 3s ease-in-out infinite;
 }
 
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.section-title .relative {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+.section-title span:last-of-type {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* CSS Custom Properties for Dynamic Styling */
@@ -52,90 +42,201 @@
   --color-neutral-100: #f3f4f6;
   --color-neutral-300: #d1d5db;
   --color-red: #E84142;
-  --base: 1rem;
-  --xl: 1.25rem;
-  --md: 0.75rem;
+  
+  /* Spacing System - Following Avalanche pattern */
+  --gap-base: 1rem;
+  --gap-xl: 1.5rem;
+  --p-md: 0.75rem;
+  --p-lg: 2rem;
+  --p-xl: 3rem;
+  
+  /* Typography */
+  --font-size-base: clamp(1rem, 0.8rem + 0.5vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --font-size-xl: clamp(1.5rem, calc(1.179rem + 1.282vw), 2rem);
+  --font-size-2xl: clamp(2rem, 1.5rem + 2vw, 4rem);
+  
   --transition-move: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dynamic Background Colors for Light/Dark Mode */
+/* Dynamic Background Colors for Light/Dark Mode - Professional Solid Colors */
 .insight {
-  /* Light mode - use light gradients */
+  /* Light mode - clean solid backgrounds */
   --bg-current: var(--bg-gradient-light);
 }
 
 .dark .insight {
-  /* Dark mode - use dark gradients */
+  /* Dark mode - solid professional colors */
   --bg-current: var(--bg-gradient);
 }
 
-/* Card background styling - Light Mode */
+/* Remove all gradient overlays - use solid colors only */
+.dark .insight[style*="blue"] {
+  --bg-current: #1e293b; /* Dark slate */
+}
+
+.dark .insight[style*="violet"] {
+  --bg-current: #1f2937; /* Dark gray */
+}
+
+.dark .insight[style*="cyan"] {
+  --bg-current: #0f172a; /* Darker slate */
+}
+
+.dark .insight[style*="pink"] {
+  --bg-current: #18181b; /* Dark zinc */
+}
+
+.dark .insight[style*="emerald"] {
+  --bg-current: #111827; /* Dark gray */
+}
+
+.dark .insight[style*="indigo"] {
+  --bg-current: #0c0a09; /* Very dark brown */
+}
+
+/* Card background styling - Use theme colors */
 .insight > div:first-child {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px) saturate(180%);
-  border-radius: 1rem;
+  background: var(--bg-gradient);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem; /* Bo góc phần left */
 }
 
 .insight:hover > div:first-child {
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
+  background: var(--bg-gradient);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Icon Section Glass Effect - Light Mode */
 .insight > div:last-child {
-  backdrop-filter: blur(8px) saturate(200%);
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--bg-gradient);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem; /* Bo góc phần right */
 }
 
 .insight:hover > div:last-child {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--bg-gradient);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Dark Mode Card Styling */
+/* Dark Mode Card Styling - Same theme colors */
 .dark .insight > div:first-child {
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: var(--bg-gradient);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem; /* Bo góc phần left dark mode */
 }
 
 .dark .insight:hover > div:first-child {
-  background: rgba(15, 23, 42, 0.98);
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(148, 163, 184, 0.3);
+  background: var(--bg-gradient);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .dark .insight > div:last-child {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: var(--bg-gradient);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem; /* Bo góc phần right dark mode */
 }
 
 .dark .insight:hover > div:last-child {
-  background: rgba(15, 23, 42, 0.9);
+  background: var(--bg-gradient);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Advanced Sticky Positioning System */
+/* Advanced Sticky Positioning System - Updated for stacking cards */
 .insight {
   position: sticky;
   top: calc(var(--navbar-height) + var(--padding-md) + var(--offset));
-  height: calc(var(--insight-card-height) - var(--navbar-height) - var(--offset) - var(--padding-md) * 2);
+  height: calc(400px + var(--index, 0) * 15px); /* Increasing height for each card - tăng từ 120px lên 400px */
+  min-height: 400px; /* Minimum height for stacked cards - tăng từ 120px lên 400px */
   display: grid;
   grid-template-columns: 1fr;
   place-items: stretch;
-  will-change: transform;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: var(--z-index, calc(100 + var(--index, 0))); /* Thẻ sau chồng lên thẻ trước */
+  z-index: var(--z-index, calc(100 + var(--index, 0)));
   contain: layout style paint;
+  margin-bottom: 0; /* No margin between stacked cards */
+  
+  /* Thêm margin trái phải để không full width */
+  margin-left: 2rem;
+  margin-right: 2rem;
+  max-width: calc(100vw - 4rem);
 }
 
-/* Desktop Grid Layout */
+/* Responsive margins */
+@media (min-width: 768px) {
+  .insight {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    max-width: calc(100vw - 8rem);
+  }
+}
+
 @media (min-width: 1024px) {
   .insight {
-    grid-template-columns: 2fr 1.2fr;
+    margin-left: 6rem;
+    margin-right: 6rem;
+    max-width: calc(100vw - 12rem);
   }
+}
+
+@media (min-width: 1280px) {
+  .insight {
+    margin-left: 8rem;
+    margin-right: 8rem;
+    max-width: calc(100vw - 16rem);
+  }
+}
+
+@media (min-width: 1536px) {
+  .insight {
+    margin-left: 10rem;
+    margin-right: 10rem;
+    max-width: calc(100vw - 20rem);
+  }
+}
+
+/* Card 04 (GLOBAL COMMUNITY) - Expanded to show content */
+.insight:nth-child(4) {
+  height: 600px !important;
+  min-height: 600px !important;
+}
+
+/* Khi các thẻ bị sticky và chồng lên nhau, chỉ hiển thị tag name */
+.insight.sticky-collapsed {
+  height: 400px !important; /* Tăng từ 120px lên 400px để đều với thẻ bình thường */
+  min-height: 400px !important;
+  grid-template-columns: 1fr !important;
+}
+
+.insight.sticky-collapsed > div:last-child {
+  display: none; /* Ẩn phần content chính */
+}
+
+.insight.sticky-collapsed > div:first-child {
+  height: 400px !important; /* Tăng từ 120px lên 400px */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+}
+
+.insight.sticky-collapsed .tag-name-container {
+  margin-bottom: 0 !important;
+}
+
+.insight.sticky-collapsed .tag-name-container span {
+  font-size: 3rem !important; /* Nhỏ hơn khi sticky */
+}
+
+/* Responsive sticky collapsed */
+@media (min-width: 1024px) {
+  .insight.sticky-collapsed .tag-name-container span {
+    font-size: 3.5rem !important;
+  }
+}
+
+/* Grid Layout - Always Active */
+.insight {
+  grid-template-columns: 1.5fr 1fr !important;
+  gap: 1.5rem; /* Khoảng cách giữa 2 phần của thẻ */
 }
 
 /* Sticky Scroll Animation */
@@ -143,14 +244,7 @@
   transition: var(--transition-move);
 }
 
-/* Feature Card Hover Effects */
-.insight:hover {
-  transform: scale(1.01) translateZ(0);
-  z-index: calc(var(--z-index, 100) + 50); /* Khi hover, z-index tăng cao để luôn ở trên cùng */
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
-}
+/* Feature Card Effects Removed for Static Layout */
 
 /* Utility Classes using Tailwind-compatible syntax */
 .gap-base {
@@ -258,7 +352,6 @@
 /* Title styling improvements */
 .insight h2 {
   color: #1f2937;
-  text-transform: uppercase;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -270,14 +363,50 @@
 }
 
 /* Icon container improvements */
-.insight .w-20.h-20 {
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.insight .icon-container {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.insight:hover .w-20.h-20 {
-  transform: scale(1.05) rotate(-2deg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+.insight:hover .icon-container {
+  transform: scale(1.05) rotate(3deg) translateZ(20px);
+}
+
+/* React Icons styling */
+.insight svg {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.insight:hover svg {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+  transform: scale(1.1) rotate(6deg);
+}
+
+/* Dark mode icon effects */
+.dark .insight svg {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+}
+
+.dark .insight:hover svg {
+  filter: drop-shadow(0 8px 16px rgba(139, 92, 246, 0.4));
+}
+
+/* Icon background gradient effects */
+.insight .icon-bg::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--bg-gradient));
+  border-radius: 1.75rem;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.insight:hover .icon-bg::before {
+  opacity: 0.3;
 }
 
 /* Responsive Design */
@@ -355,32 +484,258 @@
 
 /* Dark Mode Enhancements */
 .dark .insight > div:first-child {
-  background: rgba(15, 23, 42, 0.95);
-  border-color: rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(16px) saturate(180%);
 }
 
 .dark .insight:hover > div:first-child {
-  background: rgba(15, 23, 42, 0.98);
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(139, 92, 246, 0.3);
   box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(148, 163, 184, 0.3);
+    0 32px 64px -12px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .dark .insight > div:last-child {
-  background: rgba(15, 23, 42, 0.8);
-  border-color: rgba(148, 163, 184, 0.2);
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  backdrop-filter: blur(12px) saturate(200%);
+}
+
+.dark .insight:hover > div:last-child {
+  background: rgba(30, 41, 59, 0.92);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 
+    0 16px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .dark .insight h2 {
-  color: #f9fafb;
+  color: #f8fafc;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .dark .insight p {
-  color: #d1d5db;
+  color: #cbd5e1;
+  background: rgba(15, 23, 42, 0.4) !important;
+  border-color: rgba(139, 92, 246, 0.2) !important;
+  backdrop-filter: blur(8px);
 }
 
 .dark .insight .xl {
-  color: var(--color-red, #E84142);
+  color: #8b5cf6;
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+/* Dark mode hover effects for cards */
+.dark .insight:hover {
+  box-shadow: 
+    0 32px 64px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(139, 92, 246, 0.3),
+    0 0 40px rgba(139, 92, 246, 0.1);
+}
+
+/* Dark mode icon enhancements */
+.dark .insight .icon-container {
+  box-shadow: 
+    0 16px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dark .insight:hover .icon-container {
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(139, 92, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced icon glow for dark mode */
+.dark .insight .icon-bg {
+  background: linear-gradient(135deg, 
+    rgba(30, 41, 59, 0.8) 0%, 
+    rgba(51, 65, 85, 0.6) 100%
+  );
+}
+
+.dark .insight:hover .icon-bg {
+  background: linear-gradient(135deg, 
+    rgba(139, 92, 246, 0.3) 0%, 
+    rgba(30, 41, 59, 0.8) 100%
+  );
+}
+
+/* Tag Name Styling - Large and Bold */
+.tag-name-container span {
+  font-size: 7rem; /* Tăng từ 6rem lên 7rem */
+  font-weight: 900; /* font-black equivalent */
+  line-height: 1.1; /* leading-tight equivalent */
+  color: #111827; /* text-gray-900 equivalent */
+  text-shadow: 
+    3px 3px 12px rgba(0,0,0,0.9), 
+    0 0 30px rgba(0,0,0,0.5), 
+    1px 1px 0 rgba(255,255,255,0.8);
+  -webkit-text-stroke: 2px rgba(0,0,0,0.3);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0.5rem 1rem; /* Thêm padding để rộng hơn */
+  letter-spacing: 0.1em; /* Tăng khoảng cách giữa các chữ */
+}
+
+/* Dark mode tag name styling */
+.dark .tag-name-container span {
+  color: #ffffff; /* text-white equivalent */
+}
+
+/* Responsive tag name sizes */
+@media (min-width: 1024px) {
+  .tag-name-container span {
+    font-size: 8rem; /* Tăng từ 7rem lên 8rem */
+    padding: 0.75rem 1.5rem; /* Padding lớn hơn cho desktop */
+  }
+}
+
+@media (min-width: 1280px) {
+  .tag-name-container span {
+    font-size: 9rem; /* Tăng từ 8rem lên 9rem */
+    padding: 1rem 2rem; /* Padding lớn nhất */
+  }
+}
+
+@media (min-width: 1536px) {
+  .tag-name-container span {
+    font-size: 10rem; /* Tăng từ 9rem lên 10rem */
+    padding: 1.25rem 2.5rem; /* Padding cực lớn */
+  }
+}
+
+/* Tag name hover effects */
+.tag-name-container:hover span {
+  transform: scale(1.1);
+}
+
+/* Individual tag name colors - First card black, rest white - FORCE VISIBILITY */
+.insight:nth-child(1) .tag-name-container span {
+  color: #000000 !important; /* Black text for first card */
+  text-shadow: 
+    2px 2px 8px rgba(0, 0, 0, 0.3), 
+    0 0 20px rgba(0, 0, 0, 0.2), 
+    1px 1px 0 rgba(255, 255, 255, 0.5);
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
+}
+
+.insight:nth-child(2) .tag-name-container span {
+  color: #ffffff !important; /* White text */
+  text-shadow: 
+    3px 3px 12px rgba(0, 0, 0, 0.8), 
+    0 0 30px rgba(0, 0, 0, 0.5), 
+    1px 1px 0 rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.3);
+}
+
+.insight:nth-child(3) .tag-name-container span {
+  color: #ffffff !important; /* White text */
+  text-shadow: 
+    3px 3px 12px rgba(0, 0, 0, 0.8), 
+    0 0 30px rgba(0, 0, 0, 0.5), 
+    1px 1px 0 rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.3);
+}
+
+.insight:nth-child(4) .tag-name-container span {
+  color: #ffffff !important; /* White text */
+  text-shadow: 
+    3px 3px 12px rgba(0, 0, 0, 0.8), 
+    0 0 30px rgba(0, 0, 0, 0.5), 
+    1px 1px 0 rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.3);
+}
+
+.insight:nth-child(5) .tag-name-container span {
+  color: #ffffff !important; /* White text - FORCE VISIBILITY ON BLACK BACKGROUND */
+  text-shadow: 
+    4px 4px 16px rgba(255, 255, 255, 0.9), 
+    0 0 40px rgba(255, 255, 255, 0.7), 
+    2px 2px 0 rgba(255, 255, 255, 0.2);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.insight:nth-child(6) .tag-name-container span {
+  color: #ffffff !important; /* White text - FORCE VISIBILITY ON DARK GREEN */
+  text-shadow: 
+    4px 4px 16px rgba(255, 255, 255, 0.9), 
+    0 0 40px rgba(255, 255, 255, 0.7), 
+    2px 2px 0 rgba(255, 255, 255, 0.2);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Dark mode colors - Same pattern: first card black, rest white - ENHANCED VISIBILITY */
+.dark .insight:nth-child(1) .tag-name-container span {
+  color: #000000 !important; /* Black text for first card even in dark mode */
+  text-shadow: 
+    2px 2px 8px rgba(0, 0, 0, 0.5), 
+    0 0 20px rgba(0, 0, 0, 0.3), 
+    1px 1px 0 rgba(255, 255, 255, 0.3);
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+}
+
+.dark .insight:nth-child(2) .tag-name-container span {
+  color: #ffffff !important; /* White text */
+  text-shadow: 
+    3px 3px 12px rgba(0, 0, 0, 0.9), 
+    0 0 30px rgba(0, 0, 0, 0.6), 
+    1px 1px 0 rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.4);
+}
+
+.dark .insight:nth-child(3) .tag-name-container span {
+  color: #ffffff !important; /* White text */
+  text-shadow: 
+    3px 3px 12px rgba(0, 0, 0, 0.9), 
+    0 0 30px rgba(0, 0, 0, 0.6), 
+    1px 1px 0 rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.4);
+}
+
+.dark .insight:nth-child(4) .tag-name-container span {
+  color: #ffffff !important; /* White text */
+  text-shadow: 
+    3px 3px 12px rgba(0, 0, 0, 0.9), 
+    0 0 30px rgba(0, 0, 0, 0.6), 
+    1px 1px 0 rgba(255, 255, 255, 0.1);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.4);
+}
+
+.dark .insight:nth-child(5) .tag-name-container span {
+  color: #ffffff !important; /* White text - ENHANCED FOR BLACK BACKGROUND */
+  text-shadow: 
+    4px 4px 16px rgba(255, 255, 255, 1.0), 
+    0 0 40px rgba(255, 255, 255, 0.8), 
+    2px 2px 0 rgba(255, 255, 255, 0.3);
+  -webkit-text-stroke: 3px rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .insight:nth-child(6) .tag-name-container span {
+  color: #ffffff !important; /* White text - ENHANCED FOR DARK GREEN */
+  text-shadow: 
+    4px 4px 16px rgba(255, 255, 255, 1.0), 
+    0 0 40px rgba(255, 255, 255, 0.8), 
+    2px 2px 0 rgba(255, 255, 255, 0.3);
+  -webkit-text-stroke: 3px rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Smooth Scrolling Support */

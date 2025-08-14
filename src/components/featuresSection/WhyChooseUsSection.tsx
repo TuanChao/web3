@@ -1,20 +1,24 @@
 import React from 'react';
 import './WhyChooseUsSection.css';
-import { 
-  FaShieldAlt, 
-  FaBolt, 
-  FaNetworkWired, 
-  FaGem, 
-  FaMobileAlt, 
-  FaRocket 
-} from 'react-icons/fa';
+import { FaBolt, FaShieldAlt, FaChartLine, FaUsers } from 'react-icons/fa';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import chaosArt1 from '../../assets/chaos-art.png';
+import chaosArt2 from '../../assets/chaos-art2.png';
+import chaosArt3 from '../../assets/chaos-art3.png';
+import chaosArt4 from '../../assets/chaos-art4.png';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Feature {
   id: string;
   number: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: string;
+  iconComponent: React.ComponentType<any>;
+  imageUrl?: string;
+  backgroundImage: string;
   bgColor: string;
   bgColorLight: string;
   textColor: string;
@@ -23,67 +27,58 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    id: 'secure-safe',
-    number: '01',
-    title: 'Ultra Secure Trading',
-    description: 'Military-grade encryption meets DeFi innovation. Your private keys remain yours with our non-custodial architecture. Smart contracts audited by top security firms ensure maximum protection for your digital assets.',
-    icon: <div className="w-20 h-20 bg-gradient-to-r from-emerald-400 to-teal-600 rounded-3xl flex items-center justify-center text-white text-3xl font-bold shadow-2xl transform rotate-12">🛡️</div>,
-    bgColor: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-    bgColorLight: 'linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)',
-    textColor: 'text-emerald-900 dark:text-emerald-100',
-  },
-  {
     id: 'lightning-fast',
+    number: '01',
+    title: 'FAST, POWERFUL, SECURE',
+    description: 'Lightning-Fast Swaps in Seconds\nExperience the fastest token swapping in DeFi with our optimized smart contracts and advanced routing algorithms. Complete your trades in under 3 seconds with minimal slippage, even during high network congestion.\n\nMilitary-Grade Security\nYour funds are protected by audited smart contracts from leading security firms including CertiK and ConsenSys Diligence. Multi-signature wallets, time-lock mechanisms, and emergency pause functions ensure maximum protection against exploits.\n\nUltra-Low Gas Fees\nOur innovative batching system and Layer 2 integration reduce gas costs by up to 90% compared to traditional DEXs. Enjoy micro-transactions without worrying about prohibitive fees eating into your profits.\n\nCross-Chain Compatibility\nSeamlessly swap tokens across 15+ blockchains including Ethereum, BSC, Polygon, Avalanche, Arbitrum, and Optimism. Our unified interface eliminates the complexity of managing multiple wallets and bridges.',
+    icon: 'FAST, POWERFUL, SECURE',
+    iconComponent: FaBolt,
+    imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=center',
+    backgroundImage: chaosArt1,
+    bgColor: '#686868', // Light gray
+    bgColorLight: '#f8f9fa',
+    textColor: '#ffffff',
+  },
+  {
+    id: 'infinitely-scalable',
     number: '02',
-    title: 'Blazing Fast Swaps',
-    description: 'Experience sub-second transaction speeds with our optimized DEX engine. Advanced algorithms ensure minimal slippage and maximum efficiency across all supported networks.',
-    icon: <div className="w-20 h-20 bg-gradient-to-r from-amber-400 to-orange-600 rounded-3xl flex items-center justify-center text-white text-3xl font-bold shadow-2xl transform -rotate-12">⚡</div>,
-    bgColor: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-    bgColorLight: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
-    textColor: 'text-amber-900 dark:text-amber-100',
+    title: 'INFINITELY SCALABLE BY DESIGN',
+    description: 'Revolutionary AMM 3.0 Architecture\nBuilt from the ground up with scalability in mind, our next-generation Automated Market Maker handles unlimited trading pairs and liquidity pools without performance degradation.\n\nDynamic Liquidity Aggregation\nOur protocol automatically sources liquidity from multiple DEXs, CEXs, and private market makers to ensure you always get the best possible price with minimal slippage, regardless of trade size.\n\nElastic Network Expansion\nAs new blockchains emerge, our modular architecture allows instant integration without downtime or smart contract upgrades. Future-proof your DeFi experience with technology that grows with the ecosystem.\n\nHorizontal Scaling Solutions\nAdvanced sharding and parallel processing capabilities mean our platform maintains sub-second transaction times even with millions of concurrent users and thousands of active trading pairs.',
+    icon: 'INFINITELY SCALABLE BY DESIGN',
+    iconComponent: FaShieldAlt,
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    backgroundImage: chaosArt2,
+    bgColor: '#0061e2', // Blue
+    bgColorLight: '#0061e2',
+    textColor: '#ffffff',
     isColorful: true,
   },
   {
-    id: 'multi-chain',
+    id: 'advanced-defi',
     number: '03',
-    title: 'Cross-Chain Magic',
-    description: 'Seamlessly trade across Ethereum, Polygon, BSC, Arbitrum, and 15+ networks. One interface, unlimited possibilities. The future of DeFi is multi-chain.',
-    icon: <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center text-white text-3xl font-bold shadow-2xl transform rotate-6">🔗</div>,
-    bgColor: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-    bgColorLight: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-    textColor: 'text-blue-900 dark:text-blue-100',
+    title: 'ADVANCED DEFI PROTOCOLS',
+    description: 'Sophisticated Yield Optimization\nMaximize your returns with our AI-powered yield farming strategies that automatically compound rewards and rebalance positions across multiple protocols to optimize APY while minimizing impermanent loss.\n\nInnovative Liquidity Mining\nEarn dual rewards through our unique liquidity mining program. Provide liquidity to earn trading fees plus native governance tokens, with boosted rewards for long-term stakers and early adopters.\n\nSmart Contract Automation\nSet-and-forget trading strategies with our advanced limit orders, dollar-cost averaging, and portfolio rebalancing tools. Our smart contracts execute your strategies 24/7 without manual intervention.\n\nRisk Management Suite\nAdvanced tools including impermanent loss protection, liquidation insurance, and dynamic slippage controls help protect your capital while maximizing opportunities in volatile markets.\n\nFlash Loan Integration\nAccess instant, uncollateralized loans for arbitrage opportunities, liquidation protection, and advanced trading strategies without tying up your capital.',
+    icon: 'ADVANCED DEFI PROTOCOLS',
+    iconComponent: FaChartLine,
+    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=400&fit=crop&crop=center',
+    backgroundImage: chaosArt3,
+    bgColor: '#000000', // Green
+    bgColorLight: '#10b981',
+    textColor: '#ffffff',
     isColorful: true,
   },
   {
-    id: 'best-rates',
+    id: 'global-community',
     number: '04',
-    title: 'Premium Rates',
-    description: 'Our AI-powered routing engine scans 50+ DEXs simultaneously to find you the absolute best rates. Save more on every trade with intelligent price optimization.',
-    icon: <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-rose-600 rounded-3xl flex items-center justify-center text-white text-3xl font-bold shadow-2xl transform -rotate-6">💎</div>,
-    bgColor: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
-    bgColorLight: 'linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%)',
-    textColor: 'text-pink-900 dark:text-pink-100',
-  },
-  {
-    id: 'mobile-ready',
-    number: '05',
-    title: 'Mobile-First Design',
-    description: 'Trade on-the-go with our responsive mobile interface. Full desktop functionality in your pocket. Never miss a trading opportunity again.',
-    icon: <div className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl flex items-center justify-center text-white text-3xl font-bold shadow-2xl transform rotate-12">📱</div>,
-    bgColor: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)',
-    bgColorLight: 'linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%)',
-    textColor: 'text-cyan-900 dark:text-cyan-100',
-    isColorful: true,
-  },
-  {
-    id: 'always-evolving',
-    number: '06',
-    title: 'Innovation Engine',
-    description: 'Weekly updates bring new features, tokens, and cutting-edge DeFi integrations. Join thousands of traders building the future of decentralized finance.',
-    icon: <div className="w-20 h-20 bg-gradient-to-r from-violet-500 to-purple-700 rounded-3xl flex items-center justify-center text-white text-3xl font-bold shadow-2xl transform -rotate-12">🚀</div>,
-    bgColor: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-    bgColorLight: 'linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%)',
-    textColor: 'text-violet-900 dark:text-violet-100',
+    title: 'GLOBAL COMMUNITY',
+    description: 'Worldwide Accessibility\nAvailable 24/7 in 40+ languages with localized support teams across different time zones. No geographical restrictions, no KYC requirements - true financial freedom for everyone.\n\nThriving Developer Ecosystem\nComprehensive APIs, SDKs, and documentation empower developers to build innovative DeFi applications on top of our infrastructure. Join our hackathons and developer grants program.\n\nCommunity Governance\nShape the future through our decentralized governance system. Vote on protocol upgrades, fee structures, new chain integrations, and treasury allocations. Your voice matters in our DAO.\n\nEducational Hub & Resources\nFrom beginners to DeFi experts, access our extensive library of tutorials, webinars, and market analysis. Our DeFi Academy has trained over 100,000 users to navigate decentralized finance safely.\n\nStrategic Partnerships\nCollaborating with leading blockchain projects, institutional liquidity providers, and DeFi protocols to create the most comprehensive and liquid trading environment in the space.\n\nIncentivized Participation\nActive community members earn rewards through our ambassador program, bug bounty campaigns, and social media contests. Build the future of finance while earning token rewards.',
+    icon: 'GLOBAL COMMUNITY',
+    iconComponent: FaUsers,
+    imageUrl: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=400&fit=crop&crop=center',
+    backgroundImage: chaosArt4,
+    bgColor: '#dc3545', // Red
+    bgColorLight: '#dc3545',
+    textColor: '#ffffff',
   },
 ];
 
@@ -93,124 +88,209 @@ interface FeatureCardProps {
 }
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
+  const [isSticky, setIsSticky] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(false);
+  const cardRef = React.useRef<HTMLDivElement>(null);
+  const iconRef = React.useRef<HTMLDivElement>(null);
+  
+  const IconComponent = feature.iconComponent;
+
+  React.useEffect(() => {
+    const stickyObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsSticky(!entry.isIntersecting && entry.boundingClientRect.y <= 150);
+      },
+      {
+        threshold: [0, 1],
+        rootMargin: '-100px 0px 0px 0px'
+      }
+    );
+
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -20% 0px'
+      }
+    );
+
+    if (cardRef.current) {
+      stickyObserver.observe(cardRef.current);
+      visibilityObserver.observe(cardRef.current);
+    }
+
+    return () => {
+      stickyObserver.disconnect();
+      visibilityObserver.disconnect();
+    };
+  }, []);
+
+  // GSAP Animations - Only for icon
+  React.useEffect(() => {
+    if (!cardRef.current) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: cardRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    // Animate icon only
+    if (iconRef.current) {
+      tl.fromTo(iconRef.current,
+        { opacity: 0, scale: 0, rotation: -180 },
+        { opacity: 1, scale: 1, rotation: 0, duration: 0.8, ease: "back.out(1.7)" }
+      );
+    }
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   const cardStyle = {
     '--index': index,
     '--offset': `${index * 80}px`,
     '--bg-gradient': feature.bgColor,
     '--bg-gradient-light': feature.bgColorLight,
     '--z-index': 100 + index,
-    '--card-rotation': `${(index % 2 === 0 ? 1 : -1) * 0.5}deg`,
   } as React.CSSProperties;
 
   return (
     <div 
+      ref={cardRef}
       style={cardStyle}
-      className={`insight sticky 
+      className={`insight sticky group 
         top-[calc(var(--navbar-height)+var(--padding-md)+var(--offset))] 
-        h-[calc(var(--insight-card-height)-var(--offset))]
-        grid grid-cols-1 lg:grid-cols-[1fr_2fr] 
-        will-change-transform ${feature.textColor} 
-        ${feature.isColorful ? 'group-[.colorful]/section:text-white' : ''}
+        h-[max(400px,calc(var(--insight-card-height)-var(--offset)*0.8))]
+        grid grid-cols-[1.5fr_1fr]
+        will-change-transform text-current
+        ${feature.isColorful ? 'group-[.colorful]/section:text-white colorful' : 'secondary'}
+        ${isSticky ? 'sticky-collapsed' : ''}
         z-[var(--z-index)] rounded-3xl overflow-hidden
-        transform transition-all duration-700 ease-out
-        hover:scale-[1.02] hover:rotate-[var(--card-rotation)]
-        shadow-2xl hover:shadow-3xl
       `}
     >
-      {/* Icon Section - Left Column */}
-      <div className="relative flex items-center justify-center p-8 lg:p-12
-        backdrop-blur-xl rounded-3xl lg:rounded-r-none lg:rounded-l-3xl
-        border border-white/20 border-r-0 lg:border-r
-        overflow-hidden"
+      {/* Sticky Tab - Only visible when stacked */}
+      <div className={`absolute top-0 left-0 right-0 z-30 h-16 flex items-center justify-center
+        transition-all duration-300 ${isSticky ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}
+        bg-gradient-to-r from-transparent via-black/20 to-transparent backdrop-blur-sm`}
         style={{
-          background: `var(--bg-current), rgba(255,255,255,0.05)`,
-          backgroundBlendMode: 'overlay'
+          background: `linear-gradient(90deg, transparent, ${feature.bgColor}CC, transparent)`
         }}
       >
-        
-        {/* Floating Geometric Shapes */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-4 right-4 w-8 h-8 bg-white/30 rounded-lg rotate-45 animate-spin" style={{animationDuration: '8s'}} />
-          <div className="absolute bottom-4 left-4 w-6 h-6 bg-white/40 rounded-full animate-bounce" />
-          <div className="absolute top-1/2 left-1/2 w-12 h-12 bg-white/20 rounded-full blur-xl animate-pulse" />
-        </div>
-        
-        {/* Icon Container */}
-        <div className="relative z-10 transform transition-all duration-700 ease-out
-          hover:scale-110 hover:rotate-6 group"
+        <span className="text-2xl font-bold tracking-wider"
+          style={{ 
+            color: feature.textColor,
+            fontFamily: 'Georgia, serif'
+          }}
         >
-          {feature.icon}
-          
-          {/* Glow Effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent
-            rounded-3xl blur-xl opacity-0 group-hover:opacity-100
-            transition-opacity duration-500"
-          />
-        </div>
+          {feature.number} • {feature.title.split('.')[0]}
+        </span>
       </div>
-      
-      {/* Main Content Section - Right Column */}
-      <div className="relative h-full flex flex-col justify-between p-8 lg:p-12
-        backdrop-blur-xl border border-white/20
-        rounded-3xl lg:rounded-l-none lg:rounded-r-3xl
-        overflow-hidden"
+
+      {/* Card Content - Left Side */}
+      <div className="relative flex flex-col justify-start p-12 lg:p-16
+        overflow-hidden h-full border border-red-500/30"
         style={{
-          background: `var(--bg-current), rgba(255,255,255,0.1)`,
-          backgroundBlendMode: 'overlay'
+          background: `var(--bg-gradient)`,
+          borderRadius: '1.5rem',
         }}
       >
-        
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/10 animate-pulse" />
-          <div className="absolute top-0 left-0 w-32 h-32 bg-white/20 rounded-full blur-3xl animate-bounce" style={{animationDelay: `${index * 0.5}s`}} />
-          <div className="absolute bottom-0 right-0 w-24 h-24 bg-white/30 rounded-full blur-2xl animate-pulse" style={{animationDelay: `${index * 0.3}s`}} />
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/5" />
         </div>
         
-        {/* Content Container */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center space-y-6">
-          {/* Title */}
-          <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-black uppercase leading-tight
-            ${feature.textColor} drop-shadow-sm
-            transform transition-all duration-500
-            hover:scale-105`}
-          >
-            {feature.title}
-          </h2>
+        {/* Number and Title - Top Row */}
+        <div className="relative z-20 pt-2" style={{ marginBottom: 'var(--gap-xl, 2rem)' }}>
+          <div className="flex items-center" style={{ gap: 'var(--gap-xl, 2rem)', padding: '0 var(--p-lg, 2rem)' }}>
+            {/* Card Number */}
+            <div 
+              className="font-bold leading-none opacity-80"
+              style={{ 
+                fontFamily: 'Georgia, serif',
+                color: '#ffffff',
+                textShadow: '2px 2px 8px rgba(0,0,0,0.5)',
+                fontSize: 'clamp(2rem, 1.5rem + 2vw, 4rem)'
+              }}
+            >
+              {feature.number}
+            </div>
+
+            {/* Title - Large and Bold */}
+            <h2 
+              className="font-black leading-tight flex-1 uppercase"
+              style={{
+                color: '#ffffff',
+                textShadow: '2px 2px 20px rgba(0,0,0,0.2)',
+                letterSpacing: '-0.02em',
+                fontSize: 'clamp(1.5rem, calc(1.179rem + 1.282vw), 2rem)',
+                lineHeight: '1.1'
+              }}
+            >
+              {feature.title}
+            </h2>
+          </div>
+        </div>
+        
+        {/* Main Content */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center" style={{ gap: 'var(--gap-base, 1.5rem)', padding: '0 var(--p-lg, 2rem)' }}>
           
-          {/* Description */}
-          <p className={`text-lg lg:text-xl leading-relaxed ${feature.textColor}/80
-            max-w-2xl backdrop-blur-sm p-4 rounded-2xl
-            bg-white/10 border border-white/20`}
+          {/* Description - Show for all cards but style differently */}
+          <p 
+            className="font-light max-w-lg"
+            style={{ 
+              color: '#ffffff',
+              fontSize: 'clamp(1rem, 0.8rem + 0.5vw, 1.125rem)',
+              lineHeight: '1.6',
+              opacity: '0.9'
+            }}
           >
             {feature.description}
           </p>
+          
+        </div>
+      </div>
+
+      {/* Card Visual - Right Side */}
+      <div className="flex relative items-center justify-center
+        overflow-hidden min-h-[400px]"
+        style={{
+          borderRadius: '1.5rem',
+          backgroundImage: `url(${feature.backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundClip: 'padding-box',
+          background: `url(${feature.backgroundImage}) center/cover no-repeat`
+        }}>
+        
+        {/* Overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-[0.5px]" 
+          style={{ borderRadius: '1.5rem' }} />
+        
+        {/* Icon Display */}
+        <div className="relative z-10 w-full h-full flex items-center justify-center p-8">
+          <div 
+            ref={iconRef}
+            className="w-32 h-32 flex items-center justify-center rounded-2xl
+            bg-white/20 backdrop-blur-sm
+            transition-all duration-300 hover:scale-110 hover:rotate-6">
+            <IconComponent size={80} style={{ color: '#ffffff' }} />
+          </div>
         </div>
         
         {/* Decorative Elements */}
-        <div className="relative z-10 flex justify-between items-end mt-8">
-          {/* Progress Bar */}
-          <div className="flex-1 h-2 bg-white/20 rounded-full overflow-hidden mr-6">
-            <div 
-              className="h-full bg-gradient-to-r from-white/60 to-white/80 rounded-full
-                transform scale-x-0 origin-left transition-transform duration-1000 ease-out
-                hover:scale-x-100"
-              style={{animationDelay: `${index * 0.2}s`}}
-            />
-          </div>
-          
-          {/* Avalanche Logo */}
-          <div className={`w-12 h-12 flex items-center justify-center
-            bg-white/20 backdrop-blur-sm rounded-full
-            ${feature.textColor} hover:bg-white/30 transition-all duration-300
-            hover:scale-110 hover:rotate-12`}
-          >
-            <svg viewBox="0 0 722 628" className="w-6 h-6 fill-current">
-              <path d="M548.831 381.485C560.015 362.435 587.792 362.435 598.853 381.485L717.703 584.525C728.887 603.575 714.876 627.296 692.63 627.296H454.932C432.686 627.296 418.797 603.575 429.859 584.525L548.831 381.485Z"/>
-              <path d="M477.034 246.295C487.849 227.367 487.849 204.015 477.034 184.965L379.57 14.9872C368.631 -4.06311 341.346 -4.06311 330.408 14.9872L4.21765 584.407C-6.7209 603.457 6.92156 627.301 28.7987 627.301H223.603C245.358 627.301 265.391 615.625 276.207 596.697L476.911 246.295H477.034Z"/>
-            </svg>
-          </div>
-        </div>
+        <div className="absolute top-8 right-8 w-3 h-3 bg-white/50 rounded-full animate-pulse" />
+        <div className="absolute bottom-12 left-8 w-2 h-2 bg-white/40 rounded-full animate-pulse" 
+          style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 right-12 w-1 h-1 bg-white/60 rounded-full animate-pulse" 
+          style={{ animationDelay: '2s' }} />
       </div>
     </div>
   );
@@ -219,11 +299,13 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
 const WhyChooseUsSection: React.FC = () => {
   return (
     <section 
-      className="relative flex flex-col items-stretch justify-start group/section"
+      className="relative flex flex-col items-stretch justify-start group/section
+        min-h-screen p-8"
       style={{
+        backgroundColor: '#1a1a1a',
         '--navbar-height': '80px',
         '--padding-md': '24px',
-        '--insight-card-height': '600px',
+        '--insight-card-height': '800px',
         '--color-neutral-50': '#f9fafb',
         '--color-neutral-100': '#f3f4f6',
         '--color-neutral-300': '#d1d5db',
@@ -243,44 +325,8 @@ const WhyChooseUsSection: React.FC = () => {
       } as React.CSSProperties}
     >
       
-      {/* Section Header */}
-      <div className="container mx-auto px-6 lg:px-8 relative z-30 mb-16">
-        <h2 className="section-title text-center mb-16">
-          <div className="inline-block relative">
-            {/* Main Title Container */}
-            <div className="relative bg-white dark:bg-gray-900 rounded-2xl p-6 lg:p-8 shadow-xl border border-gray-200 dark:border-gray-700">
-              <div className="space-y-3">
-                {/* First Line */}
-                <div className="block w-fit mx-auto">
-                  <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 
-                    font-black uppercase leading-tight tracking-wide
-                    text-gray-900 dark:text-white
-                    drop-shadow-sm">
-                    Why Choose
-                  </span>
-                </div>
-                
-                {/* Second Line */}
-                <div className="block w-fit mx-auto">
-                  <span className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl 
-                    font-black uppercase leading-tight tracking-wider
-                    bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 
-                    bg-clip-text text-transparent
-                    drop-shadow-sm">
-                    ChaosSwap
-                  </span>
-                </div>
-                
-                {/* Decorative Line */}
-                <div className="w-24 h-0.5 mx-auto bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-              </div>
-            </div>
-          </div>
-        </h2>
-      </div>
-      
       {/* Features Container */}
-      <div className="container mx-auto px-6 lg:px-8 relative z-10" style={{paddingBottom : 32}}>
+      <div className="relative z-10" style={{paddingBottom : 32}}>
         <div className="space-y-0">
           {features.map((feature, index) => (
             <FeatureCard key={feature.id} feature={feature} index={index} />
@@ -288,8 +334,6 @@ const WhyChooseUsSection: React.FC = () => {
         </div>
       </div>
       
-      {/* Bottom Spacer */}
-      {/* <div className="h-screen" aria-hidden="true" /> */}
     </section>
   );
 };

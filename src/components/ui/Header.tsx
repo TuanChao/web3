@@ -16,7 +16,7 @@ export function Header() {
             <span className="logo-text">ChaosSwap</span>
           </Link>
           <nav className="nav-menu">
-            <Link to={routesName.SWAP} className="nav-item">Swap</Link>
+            <Link to={routesName.TRADE} className="nav-item">Swap</Link>
             <Link to={routesName.EARN} className="nav-item">Earn</Link>
             <Link to={routesName.BRIDGE} className="nav-item">Bridge</Link>
             <Link to={routesName.PLAY} className="nav-item">Play</Link>

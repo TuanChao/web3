@@ -1,8 +1,11 @@
 import MainLayout from "../components/layouts/MainLayout";
 import AboutPage from "../components/pages/About";
 import { HomePageNew } from '../pages/HomePageNew';
-import TokenSwap from '../pages/Swaptoken';
-import PancakeSwapStyle from '../components/web3/PancakeSwapStyle';
+import SwapPage from '../components/Swap/SwapPage';
+import SuperSimpleSwap from '../components/Swap/SuperSimpleSwap';
+import SwapSimple from '../components/Swap/SwapSimple';
+import TestSwap from '../components/Swap/TestSwap';
+import SwapPageNew from '../components/Swap/SwapPageNew';
 import FeaturesDemo from '../pages/FeaturesDemo';
 import routesName from "./enum.routes";
 import type { IRouterData } from "./type.routes";
@@ -21,13 +24,13 @@ export const routesData: IRouterData[] = [
   {
     path: routesName.TRADE,
     layout: MainLayout,
-    component: () => <TokenSwap/>,
+    component: () => <SwapPageNew/>,
   },
-  {
-    path: routesName.SWAP,
-    layout: MainLayout,
-    component: () => <PancakeSwapStyle/>,
-  },
+  // {
+  //   path: routesName.SWAP,
+  //   layout: MainLayout,
+  //   component: () => <PancakeSwapStyle/>,
+  // },
   {
     path: '/features',
     layout: MainLayout,

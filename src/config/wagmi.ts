@@ -8,7 +8,7 @@ export const config = createConfig({
   chains: [mainnet, polygon, optimism, arbitrum, base, sepolia],
   connectors: [
     injected(),
-    coinbaseWallet({ appName: 'Web3 DApp' }),
+    // coinbaseWallet({ appName: 'Web3 DApp' }), // Temporarily disabled due to 401 errors
     walletConnect({ projectId }),
   ],
   transports: {

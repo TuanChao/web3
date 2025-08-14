@@ -1,5 +1,5 @@
 import React from 'react'
-import { ConnectWallet, Portfolio, TransactionHistory, ChainSwitcher, AdvancedSwap } from '../components/web3'
+import { ConnectWallet, Portfolio, TransactionHistory, ChainSwitcher } from '../components/web3'
 import './Dashboard.css'
 
 export function Dashboard() {
@@ -29,9 +29,9 @@ export function Dashboard() {
 
           {/* Right Column */}
           <div className="dashboard-column">
-            <div className="dashboard-section">
+            {/* <div className="dashboard-section">
               <AdvancedSwap />
-            </div>
+            </div> */}
             <div className="dashboard-section">
               <TransactionHistory />
             </div>

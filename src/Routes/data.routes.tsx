@@ -1,11 +1,11 @@
 import MainLayout from "../components/layouts/MainLayout";
 import AboutPage from "../components/pages/About";
 import { HomePageNew } from '../pages/HomePageNew';
-import SwapPage from '../components/Swap/SwapPage';
-import SuperSimpleSwap from '../components/Swap/SuperSimpleSwap';
-import SwapSimple from '../components/Swap/SwapSimple';
-import TestSwap from '../components/Swap/TestSwap';
-import SwapPageNew from '../components/Swap/SwapPageNew';
+// import SwapPage from '../components/Swap/SwapPage';
+// import SuperSimpleSwap from '../components/Swap/SuperSimpleSwap';
+// import SwapSimple from '../components/Swap/SwapSimple';
+// import TestSwap from '../components/Swap/TestSwap';
+// import SwapPageNew from '../components/Swap/SwapPageNew';
 import SwapPageModern from '../components/Swap/SwapPageModern';
 import FeaturesDemo from '../pages/FeaturesDemo';
 import routesName from "./enum.routes";

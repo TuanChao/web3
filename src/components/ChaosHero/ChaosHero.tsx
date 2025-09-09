@@ -10,9 +10,9 @@ import {
   ChevronDown,
   Play
 } from 'lucide-react';
-import './PancakeHero.css';
+import './ChaosHero.css';
 
-export default function PancakeHero() {
+export default function ChaosHero() {
   const [stats] = useState({
     totalValueLocked: 2450000000,
     volume24h: 89000000,

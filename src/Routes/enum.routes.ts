@@ -8,6 +8,7 @@ const routesName = {
   SWAP: "/swap",
   POOLS: "/pools",
   FARMS: "/farms",
+  DASHBOARD: "/dashboard",
 };
 
 export default routesName;

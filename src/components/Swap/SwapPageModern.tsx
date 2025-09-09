@@ -7,9 +7,18 @@ import {
   ChevronDown, 
   Wallet, 
   Zap,
-  // TrendingUp,
   Shield,
-  X
+  X,
+  Brain,
+  Network,
+  TrendingUp,
+  Clock,
+  Target,
+  Fuel,
+  DollarSign,
+  Lightbulb,
+  BarChart3,
+  CheckCircle
 } from 'lucide-react';
 
 interface Token {
@@ -46,6 +55,9 @@ const SwapPageModern: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalType, setModalType] = useState<'from' | 'to'>('from');
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
+  const [intentText, setIntentText] = useState<string>('');
+  const [showIntentResults, setShowIntentResults] = useState<boolean>(false);
+  const [selectedChain, setSelectedChain] = useState<string>('auto');
 
   const popularTokens: Token[] = [
     { symbol: 'ETH', name: 'Ethereum', balance: '1.234', price: 2500 },
@@ -123,6 +135,61 @@ const SwapPageModern: React.FC = () => {
     return price < 1 ? `$${price.toFixed(4)}` : `$${price.toLocaleString()}`;
   };
 
+  const chains = [
+    { id: 'auto', name: 'Auto-Route', icon: Network },
+    { id: 'ethereum', name: 'Ethereum', icon: Network },
+    { id: 'polygon', name: 'Polygon', icon: Network },
+    { id: 'bsc', name: 'BSC', icon: Network },
+    { id: 'arbitrum', name: 'Arbitrum', icon: Network },
+    { id: 'optimism', name: 'Optimism', icon: Network }
+  ];
+
+  const intentSuggestions = [
+    "Swap 1 ETH for USDC with lowest fees",
+    "Get best MATIC price under $5 gas fees",
+    "Bridge my tokens to Polygon for cheaper trading",
+    "Rebalance 50% ETH to stablecoins",
+    "Find best yield farming opportunity"
+  ];
+
+  const mockRoutes = [
+    {
+      id: 1,
+      path: "ETH (Ethereum) → USDC (Polygon)",
+      gasEstimate: "$2.50",
+      timeEstimate: "~2 min",
+      savings: "12%",
+      recommended: false
+    },
+    {
+      id: 2,
+      path: "ETH (Arbitrum) → USDC (Arbitrum)",
+      gasEstimate: "$0.80",
+      timeEstimate: "~30 sec",
+      savings: "45%",
+      recommended: true
+    },
+    {
+      id: 3,
+      path: "ETH → BNB → USDC (BSC)",
+      gasEstimate: "$0.30",
+      timeEstimate: "~1 min",
+      savings: "67%",
+      recommended: false
+    }
+  ];
+
+  const processIntent = () => {
+    if (!intentText.trim()) return;
+    setShowIntentResults(true);
+    // Mock processing delay
+    setTimeout(() => {
+      setFromAmount('1.0');
+      setFromToken({ symbol: 'ETH', name: 'Ethereum', balance: '1.234', price: 2500 });
+      setToToken({ symbol: 'USDC', name: 'USD Coin', balance: '1000.50', price: 1 });
+    }, 1000);
+  };
+
   return (
     <div className="modern-swap-container">
       {/* Background Effects */}
@@ -155,6 +222,111 @@ const SwapPageModern: React.FC = () => {
             <Wallet size={14} />
             <span>{address?.slice(0, 6)}...{address?.slice(-4)}</span>
             <div className="status-dot"></div>
+          </div>
+        )}
+
+        {/* Intent-Based Input */}
+        <div className="intent-section">
+          <div className="intent-header">
+            <Brain size={18} className="intent-icon" />
+            <h3>Describe Your Intent</h3>
+            <span className="intent-badge">AI-Powered</span>
+          </div>
+          
+          <div className="intent-input-container">
+            <textarea
+              className="intent-input"
+              placeholder="Tell me what you want to do... e.g., 'Swap 1 ETH for USDC with lowest fees across all chains'"
+              value={intentText}
+              onChange={(e) => setIntentText(e.target.value)}
+              rows={3}
+            />
+            
+            <div className="intent-suggestions">
+              <span className="suggestions-label">Quick suggestions:</span>
+              <div className="suggestions-grid">
+                {intentSuggestions.map((suggestion, index) => (
+                  <button
+                    key={index}
+                    className="suggestion-chip"
+                    onClick={() => setIntentText(suggestion)}
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            <button 
+              className="process-intent-btn"
+              onClick={processIntent}
+              disabled={!intentText.trim()}
+            >
+              <Target size={16} />
+              Process Intent
+            </button>
+          </div>
+        </div>
+
+        {/* Multi-Chain Route Options */}
+        {showIntentResults && (
+          <div className="route-analysis-section">
+            <div className="route-header">
+              <Network size={18} />
+              <h3>Cross-Chain Route Analysis</h3>
+              <span className="analyzing-badge">Analyzing 15+ chains...</span>
+            </div>
+            
+            <div className="route-options">
+              {mockRoutes.map((route) => (
+                <div key={route.id} className={`route-card ${route.recommended ? 'recommended' : ''}`}>
+                  <div className="route-info">
+                    <div className="route-path">
+                      <span>{route.path}</span>
+                      {route.recommended && <span className="best-route-badge">Best Route</span>}
+                    </div>
+                    <div className="route-metrics">
+                      <span className="metric">
+                        <Clock size={12} />
+                        {route.timeEstimate}
+                      </span>
+                      <span className="metric">
+                        <Fuel size={12} />
+                        {route.gasEstimate}
+                      </span>
+                      <span className="metric savings">
+                        <DollarSign size={12} />
+                        Save {route.savings}
+                      </span>
+                    </div>
+                  </div>
+                  <button className="select-route-btn">
+                    {route.recommended ? 'Use This Route' : 'Select'}
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="ai-insights">
+              <div className="insight-header">
+                <TrendingUp size={16} />
+                <span>AI Insights</span>
+              </div>
+              <div className="insights-list">
+                <div className="insight-item">
+                  <Lightbulb size={14} className="insight-icon" />
+                  <span>Best time to execute: Next 15 minutes (low network congestion)</span>
+                </div>
+                <div className="insight-item">
+                  <BarChart3 size={14} className="insight-icon" />
+                  <span>Price impact: &lt;0.01% - Excellent liquidity available</span>
+                </div>
+                <div className="insight-item">
+                  <CheckCircle size={14} className="insight-icon" />
+                  <span>Recommended: Use Arbitrum route to save 45% on gas fees</span>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -1102,6 +1274,331 @@ const SwapPageModern: React.FC = () => {
           color: #ffffff;
           width: 60px;
           outline: none;
+        }
+
+        /* Intent Section Styles */
+        .intent-section {
+          background: rgba(31, 199, 212, 0.05);
+          border: 1px solid rgba(31, 199, 212, 0.2);
+          border-radius: 16px;
+          padding: 20px;
+          margin-bottom: 24px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .intent-section::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, rgba(31, 199, 212, 0.1) 0%, rgba(255, 184, 77, 0.05) 100%);
+          pointer-events: none;
+        }
+
+        .intent-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 16px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .intent-icon {
+          color: #1FC7D4;
+        }
+
+        .intent-header h3 {
+          font-size: 16px;
+          font-weight: 600;
+          color: #ffffff;
+          margin: 0;
+          flex: 1;
+        }
+
+        .intent-badge {
+          background: linear-gradient(135deg, #1FC7D4, #FFB84D);
+          color: #08060B;
+          font-size: 11px;
+          font-weight: 600;
+          padding: 4px 8px;
+          border-radius: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .intent-input-container {
+          position: relative;
+          z-index: 1;
+        }
+
+        .intent-input {
+          width: 100%;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          padding: 16px;
+          color: #ffffff;
+          font-size: 14px;
+          line-height: 1.5;
+          outline: none;
+          resize: vertical;
+          min-height: 80px;
+          font-family: inherit;
+          transition: all 0.2s ease;
+        }
+
+        .intent-input:focus {
+          border-color: rgba(31, 199, 212, 0.5);
+          box-shadow: 0 0 0 3px rgba(31, 199, 212, 0.1);
+        }
+
+        .intent-input::placeholder {
+          color: #7A6EAA;
+        }
+
+        .intent-suggestions {
+          margin: 16px 0;
+        }
+
+        .suggestions-label {
+          font-size: 12px;
+          color: #B8ADD2;
+          display: block;
+          margin-bottom: 8px;
+        }
+
+        .suggestions-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .suggestion-chip {
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 20px;
+          padding: 6px 12px;
+          font-size: 12px;
+          color: #B8ADD2;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          white-space: nowrap;
+        }
+
+        .suggestion-chip:hover {
+          background: rgba(31, 199, 212, 0.2);
+          border-color: #1FC7D4;
+          color: #1FC7D4;
+          transform: translateY(-1px);
+        }
+
+        .process-intent-btn {
+          width: 100%;
+          background: linear-gradient(135deg, #1FC7D4 0%, #FFB84D 100%);
+          border: none;
+          border-radius: 12px;
+          padding: 12px 20px;
+          font-size: 14px;
+          font-weight: 600;
+          color: #08060B;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          transition: all 0.3s ease;
+          margin-top: 12px;
+        }
+
+        .process-intent-btn:disabled {
+          background: rgba(255, 255, 255, 0.1);
+          color: #7A6EAA;
+          cursor: not-allowed;
+        }
+
+        .process-intent-btn:not(:disabled):hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(31, 199, 212, 0.3);
+        }
+
+        /* Route Analysis Section */
+        .route-analysis-section {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 16px;
+          padding: 20px;
+          margin-bottom: 24px;
+        }
+
+        .route-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 20px;
+        }
+
+        .route-header h3 {
+          font-size: 16px;
+          font-weight: 600;
+          color: #ffffff;
+          margin: 0;
+          flex: 1;
+        }
+
+        .analyzing-badge {
+          background: rgba(255, 184, 77, 0.2);
+          color: #FFB84D;
+          font-size: 11px;
+          font-weight: 500;
+          padding: 4px 8px;
+          border-radius: 12px;
+          animation: pulse 2s ease-in-out infinite;
+        }
+
+        .route-options {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-bottom: 20px;
+        }
+
+        .route-card {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          padding: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          transition: all 0.2s ease;
+        }
+
+        .route-card.recommended {
+          border-color: rgba(16, 185, 129, 0.5);
+          background: rgba(16, 185, 129, 0.1);
+        }
+
+        .route-card:hover {
+          border-color: rgba(31, 199, 212, 0.3);
+          transform: translateY(-1px);
+        }
+
+        .route-info {
+          flex: 1;
+        }
+
+        .route-path {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 8px;
+        }
+
+        .route-path span:first-child {
+          font-size: 14px;
+          font-weight: 500;
+          color: #ffffff;
+        }
+
+        .best-route-badge {
+          background: linear-gradient(135deg, #10b981, #059669);
+          color: white;
+          font-size: 10px;
+          font-weight: 600;
+          padding: 2px 6px;
+          border-radius: 8px;
+          text-transform: uppercase;
+        }
+
+        .route-metrics {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+
+        .metric {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 12px;
+          color: #B8ADD2;
+        }
+
+        .metric.savings {
+          color: #10b981;
+          font-weight: 500;
+        }
+
+        .select-route-btn {
+          background: rgba(31, 199, 212, 0.2);
+          border: 1px solid #1FC7D4;
+          border-radius: 8px;
+          padding: 8px 16px;
+          font-size: 12px;
+          font-weight: 500;
+          color: #1FC7D4;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .select-route-btn:hover {
+          background: rgba(31, 199, 212, 0.3);
+          transform: translateY(-1px);
+        }
+
+        .route-card.recommended .select-route-btn {
+          background: linear-gradient(135deg, #1FC7D4, #FFB84D);
+          color: #08060B;
+          border: none;
+        }
+
+        /* AI Insights */
+        .ai-insights {
+          background: rgba(118, 69, 217, 0.1);
+          border: 1px solid rgba(118, 69, 217, 0.2);
+          border-radius: 12px;
+          padding: 16px;
+        }
+
+        .insight-header {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 12px;
+          color: #7645D9;
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .insights-list {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .insight-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 12px;
+          color: #B8ADD2;
+          padding: 8px 12px;
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 8px;
+        }
+
+        .insight-icon {
+          color: #7645D9;
+          flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
         }
       `}</style>
     </div>

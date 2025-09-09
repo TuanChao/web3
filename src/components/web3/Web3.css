@@ -1,3 +1,319 @@
+/* Intent Portfolio Styles */
+.intent-portfolio-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.portfolio-main-card {
+  background: rgba(15, 15, 26, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+.intent-suggestions-toggle {
+  background: linear-gradient(135deg, #7645D9, #9333EA);
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.intent-suggestions-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(118, 69, 217, 0.3);
+}
+
+.portfolio-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px 20px;
+  text-align: center;
+  color: #B8ADD2;
+}
+
+.portfolio-empty-icon {
+  color: #7A6EAA;
+}
+
+.portfolio-empty h3 {
+  color: #ffffff;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.portfolio-empty p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.multi-chain-portfolio {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chain-portfolio-section {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.chain-portfolio-section:hover {
+  border-color: rgba(31, 199, 212, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.chain-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.chain-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chain-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.chain-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1FC7D4;
+}
+
+.chain-tokens {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chain-token-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.token-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.token-symbol {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.token-balance {
+  font-size: 12px;
+  color: #B8ADD2;
+}
+
+.token-values {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.token-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.token-change {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.token-change.positive {
+  color: #10b981;
+}
+
+.token-change.negative {
+  color: #ef4444;
+}
+
+.intent-suggestions-card {
+  background: rgba(15, 15, 26, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(118, 69, 217, 0.2);
+  border-radius: 20px;
+}
+
+.intent-suggestions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.intent-suggestion-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.intent-suggestion-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #1FC7D4, transparent);
+}
+
+.intent-suggestion-card.high::before {
+  background: linear-gradient(90deg, transparent, #ef4444, transparent);
+}
+
+.intent-suggestion-card.medium::before {
+  background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+}
+
+.intent-suggestion-card.low::before {
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
+}
+
+.intent-suggestion-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(31, 199, 212, 0.3);
+  box-shadow: 0 8px 32px rgba(31, 199, 212, 0.2);
+}
+
+.suggestion-header {
+  margin-bottom: 16px;
+}
+
+.suggestion-icon-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.suggestion-icon {
+  background: rgba(31, 199, 212, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  color: #1FC7D4;
+  flex-shrink: 0;
+}
+
+.suggestion-title-section h4 {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.priority-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.priority-badge.high {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.priority-badge.medium {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.priority-badge.low {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.suggestion-content {
+  margin-bottom: 16px;
+}
+
+.suggestion-description {
+  color: #B8ADD2;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.suggestion-action, .suggestion-savings {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.suggestion-action {
+  color: #1FC7D4;
+  font-weight: 500;
+}
+
+.suggestion-savings {
+  color: #10b981;
+  font-weight: 500;
+}
+
+.suggestion-execute-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #1FC7D4, #FFB84D);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #08060B;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.suggestion-execute-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(31, 199, 212, 0.3);
+}
+
 /* Modal Overlay */
 .wallet-modal-overlay {
   position: fixed;

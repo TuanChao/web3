@@ -1,6 +1,6 @@
 import React from 'react';
-import PancakeHero from '../PancakeHero/PancakeHero';
+import ChaosHero from '../ChaosHero/ChaosHero';
 
 export default function HeroSection() {
-  return <PancakeHero />;
+  return <ChaosHero />;
 }

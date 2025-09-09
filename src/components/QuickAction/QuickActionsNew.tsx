@@ -28,10 +28,10 @@ export default function QuickActionsNew() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   const stats = {
-    tvl: 1250000000,
-    volume24h: 450000000,
-    activeUsers: 15000,
-    apy: 12.5
+    tvl: 0,
+    volume24h: 0,
+    activeUsers: 0,
+    apy: 0
   };
 
   const actions: ActionCard[] = [

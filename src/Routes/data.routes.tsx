@@ -8,6 +8,7 @@ import { HomePageNew } from '../pages/HomePageNew';
 // import SwapPageNew from '../components/Swap/SwapPageNew';
 import SwapPageModern from '../components/Swap/SwapPageModern';
 import FeaturesDemo from '../pages/FeaturesDemo';
+import { Portfolio } from '../components/web3/Portfolio';
 import routesName from "./enum.routes";
 import type { IRouterData } from "./type.routes";
 
@@ -52,5 +53,14 @@ export const routesData: IRouterData[] = [
     path: routesName.PLAY,
     layout: MainLayout,
     component: () => <div className="coming-soon">Play Page - Coming Soon</div>,
+  },
+  {
+    path: routesName.DASHBOARD,
+    layout: MainLayout,
+    component: () => (
+      <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
+        <Portfolio />
+      </div>
+    ),
   },
 ];

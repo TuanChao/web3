@@ -1,31 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { 
   ArrowRight, 
-  TrendingUp, 
-  Users, 
-  DollarSign, 
   Zap,
-  Star,
   ChevronDown,
   Play
 } from 'lucide-react';
 import './ChaosHero.css';
 
 export default function ChaosHero() {
-  const [stats] = useState({
+  const stats = {
     totalValueLocked: 2450000000,
     volume24h: 89000000,
     totalUsers: 4200000,
     totalTrades: 125000000
-  });
+  };
 
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const mascotRef = useRef<HTMLDivElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Respect reduced motion

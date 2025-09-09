@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAccount, useBalance, useConnect } from 'wagmi';
+import { useAccount, useConnect } from 'wagmi';
 // import { formatEther } from 'viem';
 import { 
   ArrowUpDown, 
@@ -57,7 +57,6 @@ const SwapPageModern: React.FC = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [intentText, setIntentText] = useState<string>('');
   const [showIntentResults, setShowIntentResults] = useState<boolean>(false);
-  const [selectedChain, setSelectedChain] = useState<string>('auto');
 
   const popularTokens: Token[] = [
     { symbol: 'ETH', name: 'Ethereum', balance: '1.234', price: 2500 },

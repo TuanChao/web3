@@ -1,7 +1,6 @@
 import { useAccount, useChainId } from 'wagmi'
 import { useMultiTokenBalances, useTokenPrices } from '../../hooks/useTokens'
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card'
-import { formatCurrency } from '../../utils'
 import { 
   Wallet, 
   TrendingUp, 
@@ -9,25 +8,16 @@ import {
   Brain,
   Network,
   Target,
-  AlertTriangle,
-  CheckCircle,
   ArrowRight,
   Zap,
-  Shield,
-  Clock
+  Shield
 } from 'lucide-react'
 import './Web3.css'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export function Portfolio() {
-  const { address, isConnected } = useAccount()
-  const chainId = useChainId()
-  const { balances, isLoading } = useMultiTokenBalances(chainId)
+  const { isConnected } = useAccount()
   const [showIntentSuggestions, setShowIntentSuggestions] = useState(false)
-  
-  // Get prices for tokens we have
-  const tokenSymbols = balances.map(token => token.symbol.toLowerCase())
-  const { prices } = useTokenPrices(tokenSymbols)
 
   // Mock multi-chain portfolio data
   const mockPortfolio = {

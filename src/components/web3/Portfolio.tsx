@@ -1,5 +1,4 @@
-import { useAccount, useChainId } from 'wagmi'
-import { useMultiTokenBalances, useTokenPrices } from '../../hooks/useTokens'
+import { useAccount } from 'wagmi'
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card'
 import { 
   Wallet, 

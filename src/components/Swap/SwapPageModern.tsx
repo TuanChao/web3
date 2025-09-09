@@ -134,14 +134,15 @@ const SwapPageModern: React.FC = () => {
     return price < 1 ? `$${price.toFixed(4)}` : `$${price.toLocaleString()}`;
   };
 
-  const chains = [
-    { id: 'auto', name: 'Auto-Route', icon: Network },
-    { id: 'ethereum', name: 'Ethereum', icon: Network },
-    { id: 'polygon', name: 'Polygon', icon: Network },
-    { id: 'bsc', name: 'BSC', icon: Network },
-    { id: 'arbitrum', name: 'Arbitrum', icon: Network },
-    { id: 'optimism', name: 'Optimism', icon: Network }
-  ];
+  // Chains configuration for future use
+  // const chains = [
+  //   { id: 'auto', name: 'Auto-Route', icon: Network },
+  //   { id: 'ethereum', name: 'Ethereum', icon: Network },
+  //   { id: 'polygon', name: 'Polygon', icon: Network },
+  //   { id: 'bsc', name: 'BSC', icon: Network },
+  //   { id: 'arbitrum', name: 'Arbitrum', icon: Network },
+  //   { id: 'optimism', name: 'Optimism', icon: Network }
+  // ];
 
   const intentSuggestions = [
     "Swap 1 ETH for USDC with lowest fees",

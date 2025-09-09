@@ -1,8 +1,6 @@
-import React from 'react';
 import { 
   HeroSection,
   QuickActionsSection, 
-  FeaturesSection,
   CTASection 
 } from '../components/sections';
 import WhyChooseUsSection from '../components/featuresSection/WhyChooseUsSection';

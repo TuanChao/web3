@@ -3,7 +3,7 @@ import './WhyChooseUsSection.css';
 import { FaBolt, FaShieldAlt, FaChartLine, FaUsers } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import chaosArt1 from '../../assets/chaos-art.png';
+import chaosArt1 from '../../assets/chaos-art1.png';
 import chaosArt2 from '../../assets/chaos-art2.png';
 import chaosArt3 from '../../assets/chaos-art3.png';
 import chaosArt4 from '../../assets/chaos-art4.png';

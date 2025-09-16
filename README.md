@@ -1,4 +1,4 @@
-# ChaosSwap - Intent-Centric Multi-Chain DeFi Platform
+# AnomaSwap - Intent-Centric Multi-Chain DeFi Platform
 
 🎯 **An AI-powered, intent-centric multi-chain DeFi platform that anticipates user needs and optimizes cross-chain transactions automatically.**
 

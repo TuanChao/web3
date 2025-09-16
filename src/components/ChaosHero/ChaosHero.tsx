@@ -101,7 +101,7 @@ export default function ChaosHero() {
 
           <h1 className="hero-title" ref={titleRef}>
             Welcome to
-            <span className="title-highlight"> ChaosSwap</span>
+            <span className="title-highlight"> AnomaSwap</span>
             <br />
             Your DeFi Gateway
           </h1>

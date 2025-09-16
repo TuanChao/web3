@@ -3,10 +3,7 @@ import './WhyChooseUsSection.css';
 import { FaBolt, FaShieldAlt, FaChartLine, FaUsers } from 'react-icons/fa';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import chaosArt1 from '../../assets/chaos-art1.png';
-import chaosArt2 from '../../assets/chaos-art2.png';
-import chaosArt3 from '../../assets/chaos-art3.png';
-import chaosArt4 from '../../assets/chaos-art4.png';
+import { SVGIcon01, SVGIcon02, SVGIcon03, SVGIcon04, SVGIcon05, SVGIcon06 } from '../../assets/svgs/SvgIcons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +15,7 @@ interface Feature {
   icon: string;
   iconComponent: React.ComponentType<any>;
   imageUrl?: string;
-  backgroundImage: string;
+  backgroundImage: React.ComponentType<any>;
   bgColor: string;
   bgColorLight: string;
   textColor: string;
@@ -27,58 +24,87 @@ interface Feature {
 
 const features: Feature[] = [
   {
-    id: 'lightning-fast',
+    id: 'user-centric',
     number: '01',
-    title: 'FAST, POWERFUL, SECURE',
-    description: 'Lightning-Fast Swaps in Seconds\nExperience the fastest token swapping in DeFi with our optimized smart contracts and advanced routing algorithms. Complete your trades in under 3 seconds with minimal slippage, even during high network congestion.\n\nMilitary-Grade Security\nYour funds are protected by audited smart contracts from leading security firms including CertiK and ConsenSys Diligence. Multi-signature wallets, time-lock mechanisms, and emergency pause functions ensure maximum protection against exploits.\n\nUltra-Low Gas Fees\nOur innovative batching system and Layer 2 integration reduce gas costs by up to 90% compared to traditional DEXs. Enjoy micro-transactions without worrying about prohibitive fees eating into your profits.\n\nCross-Chain Compatibility\nSeamlessly swap tokens across 15+ blockchains including Ethereum, BSC, Polygon, Avalanche, Arbitrum, and Optimism. Our unified interface eliminates the complexity of managing multiple wallets and bridges.',
-    icon: 'FAST, POWERFUL, SECURE',
+    title: 'USER-CENTRIC & INFRA-ABSTRACTED',
+    description: 'Access users, state, and settlement on any chain Anoma is connected to — with one deployment.',
+    icon: 'USER-CENTRIC & INFRA-ABSTRACTED',
     iconComponent: FaBolt,
     imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=400&fit=crop&crop=center',
-    backgroundImage: chaosArt1,
-    bgColor: '#686868', // Light gray
-    bgColorLight: '#f8f9fa',
+    backgroundImage: SVGIcon01,
+    bgColor: '#1e40af',
+    bgColorLight: '#3b82f6',
     textColor: '#ffffff',
   },
   {
-    id: 'infinitely-scalable',
+    id: 'compatible-any-chain',
     number: '02',
-    title: 'INFINITELY SCALABLE BY DESIGN',
-    description: 'Revolutionary AMM 3.0 Architecture\nBuilt from the ground up with scalability in mind, our next-generation Automated Market Maker handles unlimited trading pairs and liquidity pools without performance degradation.\n\nDynamic Liquidity Aggregation\nOur protocol automatically sources liquidity from multiple DEXs, CEXs, and private market makers to ensure you always get the best possible price with minimal slippage, regardless of trade size.\n\nElastic Network Expansion\nAs new blockchains emerge, our modular architecture allows instant integration without downtime or smart contract upgrades. Future-proof your DeFi experience with technology that grows with the ecosystem.\n\nHorizontal Scaling Solutions\nAdvanced sharding and parallel processing capabilities mean our platform maintains sub-second transaction times even with millions of concurrent users and thousands of active trading pairs.',
-    icon: 'INFINITELY SCALABLE BY DESIGN',
+    title: 'COMPATIBLE WITH ANY CHAIN',
+    description: 'Access users, state, and settlement on any chain Anoma is connected to — with one deployment.',
+    icon: 'COMPATIBLE WITH ANY CHAIN',
     iconComponent: FaShieldAlt,
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-    backgroundImage: chaosArt2,
-    bgColor: '#0061e2', // Blue
-    bgColorLight: '#0061e2',
+    backgroundImage: SVGIcon02,
+    bgColor: '#686868',
+    bgColorLight: '#ef4444',
     textColor: '#ffffff',
     isColorful: true,
   },
   {
-    id: 'advanced-defi',
+    id: 'composable-everything',
     number: '03',
-    title: 'ADVANCED DEFI PROTOCOLS',
-    description: 'Sophisticated Yield Optimization\nMaximize your returns with our AI-powered yield farming strategies that automatically compound rewards and rebalance positions across multiple protocols to optimize APY while minimizing impermanent loss.\n\nInnovative Liquidity Mining\nEarn dual rewards through our unique liquidity mining program. Provide liquidity to earn trading fees plus native governance tokens, with boosted rewards for long-term stakers and early adopters.\n\nSmart Contract Automation\nSet-and-forget trading strategies with our advanced limit orders, dollar-cost averaging, and portfolio rebalancing tools. Our smart contracts execute your strategies 24/7 without manual intervention.\n\nRisk Management Suite\nAdvanced tools including impermanent loss protection, liquidation insurance, and dynamic slippage controls help protect your capital while maximizing opportunities in volatile markets.\n\nFlash Loan Integration\nAccess instant, uncollateralized loans for arbitrage opportunities, liquidation protection, and advanced trading strategies without tying up your capital.',
-    icon: 'ADVANCED DEFI PROTOCOLS',
+    title: 'COMPOSABLE WITH EVERYTHING',
+    description: 'Compose interactions at the intent level, not just the transaction level, unifying state across connected chains.',
+    icon: 'COMPOSABLE WITH EVERYTHING',
     iconComponent: FaChartLine,
     imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=400&fit=crop&crop=center',
-    backgroundImage: chaosArt3,
-    bgColor: '#000000', // Green
+    backgroundImage: SVGIcon06,
+    bgColor: '#F5B027',
     bgColorLight: '#10b981',
     textColor: '#ffffff',
     isColorful: true,
   },
   {
-    id: 'global-community',
+    id: 'uniquely-expressive',
     number: '04',
-    title: 'GLOBAL COMMUNITY',
-    description: 'Worldwide Accessibility\nAvailable 24/7 in 40+ languages with localized support teams across different time zones. No geographical restrictions, no KYC requirements - true financial freedom for everyone.\n\nThriving Developer Ecosystem\nComprehensive APIs, SDKs, and documentation empower developers to build innovative DeFi applications on top of our infrastructure. Join our hackathons and developer grants program.\n\nCommunity Governance\nShape the future through our decentralized governance system. Vote on protocol upgrades, fee structures, new chain integrations, and treasury allocations. Your voice matters in our DAO.\n\nEducational Hub & Resources\nFrom beginners to DeFi experts, access our extensive library of tutorials, webinars, and market analysis. Our DeFi Academy has trained over 100,000 users to navigate decentralized finance safely.\n\nStrategic Partnerships\nCollaborating with leading blockchain projects, institutional liquidity providers, and DeFi protocols to create the most comprehensive and liquid trading environment in the space.\n\nIncentivized Participation\nActive community members earn rewards through our ambassador program, bug bounty campaigns, and social media contests. Build the future of finance while earning token rewards.',
-    icon: 'GLOBAL COMMUNITY',
+    title: 'UNIQUELY EXPRESSIVE',
+    description: 'Express any user intent and create arbitrary application types that are fully decentralized.',
+    icon: 'UNIQUELY EXPRESSIVE',
     iconComponent: FaUsers,
     imageUrl: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=400&fit=crop&crop=center',
-    backgroundImage: chaosArt4,
-    bgColor: '#dc3545', // Red
-    bgColorLight: '#dc3545',
+    backgroundImage: SVGIcon03,
+    bgColor: '#7c3aed',
+    bgColorLight: '27F5F5',
     textColor: '#ffffff',
+    isColorful: true,
+  },
+  {
+    id: 'scale-free',
+    number: '05',
+    title: 'SCALE-FREE & COST EFFECTIVE',
+    description: 'Scale as much as the laws of physics allow thanks to Anoma\'s unique approach to scalability.',
+    icon: 'SCALE-FREE & COST EFFECTIVE',
+    iconComponent: FaBolt,
+    imageUrl: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=400&fit=crop&crop=center',
+    backgroundImage: SVGIcon04,
+    bgColor: '#ea580c',
+    bgColorLight: '#f97316',
+    textColor: '#ffffff',
+    isColorful: true,
+  },
+  {
+    id: 'programmable-data',
+    number: '06',
+    title: 'PROGRAMMABLE DATA SOVEREIGNTY',
+    description: 'Control what data is shared with whom and for what purposes, and empower your users with full sovereignty over their own data.',
+    icon: 'PROGRAMMABLE DATA SOVEREIGNTY',
+    iconComponent: FaShieldAlt,
+    imageUrl: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=400&fit=crop&crop=center',
+    backgroundImage: SVGIcon05,
+    bgColor: '#be185d',
+    bgColorLight: '#ec4899',
+    textColor: '#ffffff',
+    isColorful: true,
   },
 ];
 
@@ -195,7 +221,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
 
       {/* Card Content - Left Side */}
       <div className="relative flex flex-col justify-start p-12 lg:p-16
-        overflow-hidden h-full border border-red-500/30"
+        overflow-hidden h-full border-2 border-red-500"
         style={{
           background: `var(--bg-gradient)`,
           borderRadius: '1.5rem',
@@ -210,11 +236,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
         <div className="relative z-20 pt-2" style={{ marginBottom: 'var(--gap-xl, 2rem)' }}>
           <div className="flex items-center" style={{ gap: 'var(--gap-xl, 2rem)', padding: '0 var(--p-lg, 2rem)' }}>
             {/* Card Number */}
-            <div 
+            <div
               className="font-bold leading-none opacity-80"
-              style={{ 
+              style={{
                 fontFamily: 'Georgia, serif',
-                color: '#ffffff',
+                color: feature.textColor,
                 textShadow: '2px 2px 8px rgba(0,0,0,0.5)',
                 fontSize: 'clamp(2rem, 1.5rem + 2vw, 4rem)'
               }}
@@ -223,11 +249,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
             </div>
 
             {/* Title - Large and Bold */}
-            <h2 
+            <h2
               className="font-black leading-tight flex-1 uppercase"
               style={{
-                color: '#ffffff',
-                textShadow: '2px 2px 20px rgba(0,0,0,0.2)',
+                color: feature.textColor,
+                textShadow: '2px 2px 20px rgba(0,0,0,0.3)',
                 letterSpacing: '-0.02em',
                 fontSize: 'clamp(1.5rem, calc(1.179rem + 1.282vw), 2rem)',
                 lineHeight: '1.1'
@@ -242,10 +268,10 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
         <div className="relative z-10 flex-1 flex flex-col justify-center" style={{ gap: 'var(--gap-base, 1.5rem)', padding: '0 var(--p-lg, 2rem)' }}>
           
           {/* Description - Show for all cards but style differently */}
-          <p 
+          <p
             className="font-light max-w-lg"
-            style={{ 
-              color: '#ffffff',
+            style={{
+              color: feature.textColor,
               fontSize: 'clamp(1rem, 0.8rem + 0.5vw, 1.125rem)',
               lineHeight: '1.6',
               opacity: '0.9'
@@ -259,30 +285,18 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
 
       {/* Card Visual - Right Side */}
       <div className="flex relative items-center justify-center
-        overflow-hidden min-h-[400px]"
+        overflow-hidden min-h-[400px] bg-white border-2 border-red-500"
         style={{
           borderRadius: '1.5rem',
-          backgroundImage: `url(${feature.backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundClip: 'padding-box',
-          background: `url(${feature.backgroundImage}) center/cover no-repeat`
         }}>
         
-        {/* Overlay for better text contrast */}
-        <div className="absolute inset-0 bg-black/20 backdrop-blur-[0.5px]" 
-          style={{ borderRadius: '1.5rem' }} />
-        
-        {/* Icon Display */}
-        <div className="relative z-10 w-full h-full flex items-center justify-center p-8">
-          <div 
-            ref={iconRef}
-            className="w-32 h-32 flex items-center justify-center rounded-2xl
-            bg-white/20 backdrop-blur-sm
-            transition-all duration-300 hover:scale-110 hover:rotate-6">
-            <IconComponent size={80} style={{ color: '#ffffff' }} />
-          </div>
+        {/* SVG Background */}
+        <div className="absolute inset-0" style={{ borderRadius: '1.5rem' }}>
+          <feature.backgroundImage 
+            width="100%" 
+            height="100%" 
+            className="w-full h-full object-cover" 
+          />
         </div>
         
         {/* Decorative Elements */}

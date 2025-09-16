@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAccount, useConnect } from 'wagmi';
 // import { formatEther } from 'viem';
+import { tokenService } from '../../services/tokenService';
 import { 
   ArrowUpDown, 
   Settings, 
@@ -57,17 +58,47 @@ const SwapPageModern: React.FC = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [intentText, setIntentText] = useState<string>('');
   const [showIntentResults, setShowIntentResults] = useState<boolean>(false);
+  const [tokenIcons, setTokenIcons] = useState<Record<string, string>>({});
 
   const popularTokens: Token[] = [
-    { symbol: 'ETH', name: 'Ethereum', balance: '1.234', price: 2500 },
+    { symbol: 'ETH', name: 'Ethereum', balance: '1.234', price: 2500, address: '0x0000000000000000000000000000000000000000' },
     { symbol: 'BTC', name: 'Bitcoin', balance: '0.056', price: 45000 },
-    { symbol: 'USDC', name: 'USD Coin', balance: '1000.50', price: 1 },
-    { symbol: 'USDT', name: 'Tether', balance: '500.00', price: 1 },
+    { symbol: 'USDC', name: 'USD Coin', balance: '1000.50', price: 1, address: '0xA0b86a33E6441e1b1Dc3d6b3dBBdf4E23F0F4b3f' },
+    { symbol: 'USDT', name: 'Tether', balance: '500.00', price: 1, address: '0xdAC17F958D2ee523a2206206994597C13D831ec7' },
     { symbol: 'BNB', name: 'BNB', balance: '2.15', price: 320 },
-    { symbol: 'CAKE', name: 'PancakeSwap', balance: '45.78', price: 2.45 },
-    { symbol: 'UNI', name: 'Uniswap', balance: '15.30', price: 8.50 },
-    { symbol: 'LINK', name: 'Chainlink', balance: '25.67', price: 14.20 }
+    { symbol: 'CAKE', name: 'PancakeSwap', balance: '45.78', price: 2.45, address: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82' },
+    { symbol: 'UNI', name: 'Uniswap', balance: '15.30', price: 8.50, address: '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984' },
+    { symbol: 'LINK', name: 'Chainlink', balance: '25.67', price: 14.20, address: '0x514910771AF9Ca656af840dff83E8264EcF986CA' }
   ];
+
+  // Load token icons
+  useEffect(() => {
+    const loadTokenIcons = async () => {
+      const allTokens = [fromToken, toToken, ...popularTokens];
+      const iconPromises = allTokens.map(async (token) => {
+        try {
+          const iconUrl = await tokenService.getTokenIcon(token.symbol, token.address);
+          return { symbol: token.symbol, iconUrl };
+        } catch (error) {
+          console.warn(`Failed to load icon for ${token.symbol}:`, error);
+          return { symbol: token.symbol, iconUrl: null };
+        }
+      });
+
+      const results = await Promise.allSettled(iconPromises);
+      const newIcons: Record<string, string> = {};
+      
+      results.forEach((result) => {
+        if (result.status === 'fulfilled' && result.value.iconUrl) {
+          newIcons[result.value.symbol] = result.value.iconUrl;
+        }
+      });
+
+      setTokenIcons(prev => ({ ...prev, ...newIcons }));
+    };
+
+    loadTokenIcons();
+  }, [fromToken.symbol, toToken.symbol]);
 
   // Price calculation
   useEffect(() => {
@@ -103,17 +134,7 @@ const SwapPageModern: React.FC = () => {
   };
 
   const getTokenIcon = (symbol: string) => {
-    const tokenIcons = {
-      ETH: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
-      BTC: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
-      USDC: 'https://cryptologos.cc/logos/usd-coin-usdc-logo.png',
-      USDT: 'https://cryptologos.cc/logos/tether-usdt-logo.png',
-      BNB: 'https://cryptologos.cc/logos/bnb-bnb-logo.png',
-      CAKE: 'https://cryptologos.cc/logos/pancakeswap-cake-logo.png',
-      UNI: 'https://cryptologos.cc/logos/uniswap-uni-logo.png',
-      LINK: 'https://cryptologos.cc/logos/chainlink-link-logo.png'
-    };
-    return tokenIcons[symbol as keyof typeof tokenIcons];
+    return tokenIcons[symbol] || undefined;
   };
 
   const getTokenIconFallback = (symbol: string) => {
@@ -357,6 +378,12 @@ const SwapPageModern: React.FC = () => {
                         target.style.display = 'none';
                         const fallback = target.nextElementSibling as HTMLDivElement | null;
                         if (fallback) (fallback as any).style.display = 'flex';
+                        // Remove failed icon from cache
+                        setTokenIcons(prev => {
+                          const updated = { ...prev };
+                          delete updated[fromToken.symbol];
+                          return updated;
+                        });
                       }}
                     />
                   ) : null}
@@ -429,6 +456,12 @@ const SwapPageModern: React.FC = () => {
                         target.style.display = 'none';
                         const fallback = target.nextElementSibling as HTMLDivElement | null;
                         if (fallback) (fallback as any).style.display = 'flex';
+                        // Remove failed icon from cache
+                        setTokenIcons(prev => {
+                          const updated = { ...prev };
+                          delete updated[toToken.symbol];
+                          return updated;
+                        });
                       }}
                     />
                   ) : null}
@@ -510,7 +543,7 @@ const SwapPageModern: React.FC = () => {
         {/* Security Badge */}
         <div className="security-badge">
           <Shield size={16} />
-          <span>Secured by ChaosSwap Protocol</span>
+          <span>Secured by AnomaSwap Protocol</span>
         </div>
       </div>
 
@@ -551,25 +584,34 @@ const SwapPageModern: React.FC = () => {
                           src={getTokenIcon(token.symbol)} 
                           alt={token.symbol}
                           style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
-                        />
-                      ) : (
-                        <div 
-                          style={{ 
-                            backgroundColor: getTokenIconFallback(token.symbol),
-                            width: '100%', 
-                            height: '100%', 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            justifyContent: 'center',
-                            borderRadius: '50%',
-                            fontSize: '10px',
-                            fontWeight: 'bold',
-                            color: 'white'
+                          onError={(e) => {
+                            const target = e.currentTarget as HTMLImageElement;
+                            target.style.display = 'none';
+                            // Remove failed icon from cache
+                            setTokenIcons(prev => {
+                              const updated = { ...prev };
+                              delete updated[token.symbol];
+                              return updated;
+                            });
                           }}
-                        >
-                          {token.symbol.slice(0, 2)}
-                        </div>
-                      )}
+                        />
+                      ) : null}
+                      <div 
+                        style={{ 
+                          backgroundColor: getTokenIconFallback(token.symbol),
+                          width: '100%', 
+                          height: '100%', 
+                          display: getTokenIcon(token.symbol) ? 'none' : 'flex', 
+                          alignItems: 'center', 
+                          justifyContent: 'center',
+                          borderRadius: '50%',
+                          fontSize: '10px',
+                          fontWeight: 'bold',
+                          color: 'white'
+                        }}
+                      >
+                        {token.symbol.slice(0, 2)}
+                      </div>
                     </div>
                     <span>{token.symbol}</span>
                   </button>
@@ -596,6 +638,12 @@ const SwapPageModern: React.FC = () => {
                             target.style.display = 'none';
                             const fallback = target.nextElementSibling as HTMLDivElement | null;
                             if (fallback) (fallback as any).style.display = 'flex';
+                            // Remove failed icon from cache
+                            setTokenIcons(prev => {
+                              const updated = { ...prev };
+                              delete updated[token.symbol];
+                              return updated;
+                            });
                           }}
                         />
                       ) : null}

@@ -13,11 +13,11 @@ export default function CTASection() {
           </div>
           
           <h2 className="cta-title">
-            Start Trading on <span className="highlight">ChaosSwap</span> Today
+            Start Trading on <span className="highlight">AnomaSwap</span> Today
           </h2>
           
           <p className="cta-description">
-            Join thousands of users who trust ChaosSwap for their DeFi trading needs. 
+            Join thousands of users who trust AnomaSwap for their DeFi trading needs. 
             Experience the future of decentralized finance.
           </p>
           

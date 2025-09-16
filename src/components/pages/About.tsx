@@ -4,9 +4,9 @@ export default function AboutPage() {
   return (
     <div className="about-page">
       <div className="about-container">
-        <h1 className="about-title">About ChaosSwap</h1>
+        <h1 className="about-title">About AnomaSwap</h1>
         <p className="about-description">
-          ChaosSwap is a modern decentralized exchange (DEX) built on multiple blockchain networks.
+          AnomaSwap is a modern decentralized exchange (DEX) built on multiple blockchain networks.
           Trade, earn, and participate in DeFi with our user-friendly interface.
         </p>
         

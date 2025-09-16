@@ -9,6 +9,7 @@ import { HomePageNew } from '../pages/HomePageNew';
 import SwapPageModern from '../components/Swap/SwapPageModern';
 import FeaturesDemo from '../pages/FeaturesDemo';
 import { Portfolio } from '../components/web3/Portfolio';
+import EarnPage from '../pages/EarnPage';
 import routesName from "./enum.routes";
 import type { IRouterData } from "./type.routes";
 
@@ -38,11 +39,11 @@ export const routesData: IRouterData[] = [
     layout: MainLayout,
     component: () => <FeaturesDemo/>,
   },
-  // Placeholder components for other routes
+  // Earn page
   {
     path: routesName.EARN,
     layout: MainLayout,
-    component: () => <div className="coming-soon">Earn Page - Coming Soon</div>,
+    component: () => <EarnPage/>,
   },
   {
     path: routesName.BRIDGE,

@@ -1,0 +1,231 @@
+/* Intro Component Styles */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e293b 25%,
+    #334155 50%,
+    #1e293b 75%,
+    #0f172a 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.intro-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.intro-logo {
+  margin-bottom: 32px;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+}
+
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.intro-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  background: linear-gradient(
+    135deg,
+    #8b5cf6 0%,
+    #06b6d4 50%,
+    #10b981 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.intro-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #cbd5e1;
+  font-weight: 500;
+  margin: 0;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.intro-loading {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  display: inline-block;
+}
+
+/* Background Effects */
+.intro-bg-effects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+}
+
+.orb-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+  top: 10%;
+  left: 10%;
+}
+
+.orb-2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+  bottom: 20%;
+  right: 15%;
+}
+
+.orb-3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, #10b981 0%, transparent 70%);
+  top: 50%;
+  right: 20%;
+}
+
+/* Anoma Logo Styles */
+.anoma-logo {
+  display: inline-block;
+  position: relative;
+}
+
+.anoma-logo svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.4));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .intro-content {
+    padding: 20px;
+  }
+
+  .intro-logo {
+    margin-bottom: 24px;
+  }
+
+  .intro-loading {
+    margin-top: 32px;
+  }
+
+  .bg-orb {
+    filter: blur(40px);
+  }
+
+  .orb-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .orb-2 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orb-3 {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-title {
+    font-size: 2rem;
+  }
+
+  .intro-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .intro-logo {
+    margin-bottom: 16px;
+  }
+}
+
+/* Dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+  .intro-overlay {
+    background: linear-gradient(
+      135deg,
+      #000000 0%,
+      #1a1a1a 25%,
+      #2d2d2d 50%,
+      #1a1a1a 75%,
+      #000000 100%
+    );
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .intro-logo,
+  .intro-text,
+  .loading-dots span,
+  .bg-orb {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .intro-title {
+    background: white;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .intro-subtitle {
+    color: white;
+  }
+}

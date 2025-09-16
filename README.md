@@ -1,67 +1,53 @@
-# AnomaSwap - Intent-Centric Multi-Chain DeFi Platform
+# ChaosSwap - Next-Generation Multi-Chain DeFi Platform
 
-🎯 **An AI-powered, intent-centric multi-chain DeFi platform that anticipates user needs and optimizes cross-chain transactions automatically.**
+🎯 **An advanced, user-centric multi-chain DeFi platform featuring intelligent swapping, yield farming, and cross-chain portfolio management.**
 
-Demonstrating the future of DeFi UX where users describe their intent in natural language and the protocol handles the complexity.
+Built with cutting-edge Web3 technology to deliver seamless DeFi experiences across multiple blockchains.
 
 ## 🌟 Key Features
 
-### 🤖 **Intent-Based Interface**
-- **Natural Language Processing**: Users can describe their intent like "Swap 1 ETH for USDC with lowest fees"
-- **Smart Intent Parser**: AI-powered system converts natural language to executable actions
-- **Predictive Suggestions**: 5 curated intent templates for common DeFi actions
+### 💰 **Earn & Staking Platform**
+- **Multi-Token Staking**: Stake ETH, USDC, and other major tokens
+- **Real-time APY**: Live yield rates with compound interest calculations
+- **Flexible Terms**: 7-day to 365-day staking periods
+- **Reward Tracking**: Real-time earnings and withdrawal management
+- **⚠️ Wallet Required**: Connect your Web3 wallet to access Earn features
 
-### 🌐 **Multi-Chain Intelligence** 
-- **Cross-Chain Route Optimization**: Automatically finds the best route across 15+ chains
-- **Cost Comparison Engine**: Real-time analysis of gas fees, time estimates, and savings
-- **Unified Interface**: Single UI for Ethereum, Polygon, Arbitrum, BSC, Optimism
+### 🔄 **Intelligent Swap Engine**
+- **Multi-Chain Support**: Seamless trading across 15+ blockchains
+- **Route Optimization**: AI-powered best price discovery
+- **Cost Analysis**: Real-time gas fee comparison and optimization
+- **MEV Protection**: Built-in safeguards against frontrunning
 
-### 🎯 **AI-Powered Portfolio Management**
-- **Multi-Chain Portfolio View**: Aggregated portfolio across all chains ($12,847 demo value)
-- **Intent Suggestions**: AI analyzes portfolio and suggests actions:
-  - Portfolio Rebalancing (52% ETH → diversify)
-  - Yield Optimization (Move USDC to Polygon for 8.5% APY)  
-  - Cross-Chain Cost Optimization (Bridge to Arbitrum, save 45% fees)
-  - Security Audits (Update token approvals)
+### 🌐 **Cross-Chain Portfolio Management** 
+- **Unified Dashboard**: Single view of assets across all chains
+- **Portfolio Analytics**: Real-time performance tracking and insights
+- **Cross-Chain Bridging**: Seamless asset movement between networks
+- **Risk Management**: Automated portfolio rebalancing suggestions
 
-### ⚡ **Smart Automation**
-- **Route Optimization**: Best price aggregation across DEXs and chains
-- **Gas Fee Prediction**: Optimal timing recommendations 
-- **MEV Protection**: Built-in protection mechanisms
-- **One-Click Execution**: "Execute Intent" buttons for seamless UX
-
-## 🎮 Demo Features
-
-### 🔄 **Intent-Centric Swap**
-```
-User Input: "Swap 1 ETH for USDC with lowest fees across all chains"
-
-System Response:
-✅ Route 1: ETH (Ethereum) → USDC (Polygon) - $2.50 fees, 2min
-✅ Route 2: ETH (Arbitrum) → USDC (Arbitrum) - $0.80 fees, 30sec ⭐ RECOMMENDED
-✅ Route 3: ETH → BNB → USDC (BSC) - $0.30 fees, 1min
-
-AI Insight: "Use Arbitrum route to save 45% on gas fees"
-```
-
-### 📊 **Multi-Chain Portfolio Dashboard**
-- **3 Chain Integration**: Ethereum ($8,542), Polygon ($2,845), Arbitrum ($1,459)
-- **Token Breakdown**: ETH, USDC, UNI, MATIC, ARB with 24h changes
-- **Priority-Based Suggestions**: High/Medium/Low recommendations with color coding
+### 🎨 **Modern UI/UX Design**
+- **6 Feature Cards**: User-centric design showcasing platform capabilities
+- **Sticky Scroll Effects**: GSAP-powered smooth animations
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Custom SVG Icons**: Hand-crafted icons for each feature theme
 
 ## 🛠 Tech Stack
 
 - **Frontend**: React 18, TypeScript, Vite
-- **Web3**: Wagmi v2, Viem, RainbowKit
-- **UI/UX**: Tailwind CSS, Framer Motion, GSAP animations
-- **Icons**: Lucide React (professional iconography)
-- **State**: TanStack Query for Web3 state management
+- **Web3**: Wagmi v2, Viem, RainbowKit for wallet connections
+- **UI/UX**: Tailwind CSS, GSAP animations, Custom SVG components
+- **State Management**: TanStack Query for Web3 state management
+- **Styling**: Custom CSS with modern design system
 
 ## 🚀 Quick Start
 
+### Prerequisites
+- Node.js 18+ and npm
+- Web3 wallet (MetaMask, WalletConnect, etc.)
+
 ### Installation
 ```bash
-git clone https://github.com/your-username/chaosswap
+git clone https://github.com/TuanChao/web3.git
 cd web3
 npm install
 ```
@@ -71,7 +57,7 @@ npm install
 # Copy environment template
 cp .env.example .env.local
 
-# Add your project IDs
+# Add your project IDs (optional - demo works without)
 VITE_WALLETCONNECT_PROJECT_ID=your_walletconnect_id
 VITE_REOWN_PROJECT_ID=your_reown_id
 ```
@@ -84,94 +70,144 @@ npm run dev
 
 ## 📱 User Journey
 
-### 1. **Intent Input**
-- Navigate to `/trade` (Swap page)
-- Use the "Describe Your Intent" section
-- Type natural language: "Get best ETH price under $5 gas"
+### 🔗 **Wallet Connection (Required for Earn)**
+- Click "Connect Wallet" in the top navigation
+- Choose your preferred wallet (MetaMask, WalletConnect, etc.)
+- **Note**: Wallet connection is mandatory for accessing Earn/Staking features
+- Demo features available without wallet connection
 
-### 2. **AI Processing**  
-- Click "Process Intent" button
-- System analyzes 15+ chains for optimal routes
-- Displays 3 best options with cost/time breakdown
+### 💰 **Earn & Staking Workflow**
+```
+Step 1: Connect Wallet → Step 2: Navigate to /earn → Step 3: Select Token & APY
+Step 4: Enter Amount → Step 5: Choose Staking Period → Step 6: Confirm Transaction
+```
 
-### 3. **Portfolio Management**
-- Navigate to `/dashboard` (or click Portfolio in QuickActions)
-- View multi-chain portfolio aggregation
-- Click "AI Insights" to see personalized recommendations
+### 🔄 **Swap Trading**
+- Navigate to `/swap` for token swapping
+- Use modern interface for cross-chain trades
+- Real-time price discovery and route optimization
+- Execute trades with optimal gas fees
 
-### 4. **Intent Execution**
-- Select optimal route from suggestions
-- Click "Execute Intent" for one-click trading
-- System handles cross-chain complexity automatically
+### 📊 **Portfolio Management**
+- Access `/dashboard` for portfolio overview
+- Multi-chain asset aggregation
+- Performance tracking and analytics
 
-## 🎯 Core Innovation
+## 🎯 Platform Features
 
-### 🤖 **Intent-Centric Architecture**
-- Natural language input interface
-- AI-powered intent parsing and execution
-- Predictive user experience with smart suggestions
+### 💎 **Feature Showcase (6 Core Themes)**
 
-### 🌐 **Multi-Chain Ecosystem Enhancement**
-- Cross-chain route optimization across 15+ networks
-- Cost comparison and savings analysis
-- Unified UX for complex multi-chain operations
+1. **01 - USER-CENTRIC & INFRA-ABSTRACTED**
+   - Seamless user experience with infrastructure abstraction
+   - One-click solutions for complex operations
 
-### ⚡ **User Experience Innovation**
-- Anticipates user needs with portfolio analysis
-- Eliminates manual chain/DEX selection complexity
-- One-click execution for complex DeFi strategies
+2. **02 - COMPATIBLE WITH ANY CHAIN**
+   - Universal blockchain support (20+ networks)
+   - Cross-chain asset management
 
-## 🏗 Project Architecture
+3. **03 - COMPOSABLE WITH EVERYTHING**
+   - DeFi protocol integration (200+ protocols)
+   - Custom strategy creation
+
+4. **04 - UNIQUELY EXPRESSIVE**
+   - Personalized DeFi experience
+   - Advanced analytics and visualization
+
+5. **05 - SCALE-FREE & COST EFFECTIVE**
+   - Zero-to-minimal gas fees with Layer 2
+   - Infinite scalability architecture
+
+6. **06 - PROGRAMMABLE DATA SOVEREIGNTY**
+   - Complete data ownership and privacy
+   - Zero-knowledge proofs and privacy controls
+
+## ⚠️ Important Requirements
+
+### 🔐 **Wallet Connection for Earn Features**
+- **Mandatory**: Web3 wallet connection required for all Earn/Staking functionality
+- **Supported Wallets**: MetaMask, WalletConnect, Coinbase Wallet, Trust Wallet
+- **Security**: All transactions are secure and user-controlled
+- **Demo Mode**: Browse other features without wallet connection
+
+### 💡 **Getting Started Tips**
+1. Install MetaMask or your preferred Web3 wallet
+2. Fund your wallet with test tokens for demo purposes  
+3. Connect wallet via the "Connect Wallet" button
+4. Navigate to `/earn` to start earning yield
+5. Explore other features like Swap and Portfolio
+
+## 🏗 Project Structure
 
 ```
 src/
 ├── components/
-│   ├── Swap/
-│   │   └── SwapPageModern.tsx     # Intent-centric swap interface
-│   ├── web3/
-│   │   └── Portfolio.tsx          # Multi-chain portfolio + AI insights
-│   ├── ChaosHero/                 # Landing hero section
-│   └── featuresSection/           # Marketing components
-├── Routes/                        # App routing configuration
-└── pages/                         # Page-level components
+│   ├── Swap/                      # Trading interface
+│   ├── Earn/                      # Staking modal and components  
+│   ├── featuresSection/           # 6-card feature showcase
+│   ├── web3/                      # Web3 integration components
+│   └── ui/                        # Reusable UI components
+├── assets/svgs/                   # Custom SVG icon collection
+├── services/                      # Token and API services
+├── pages/                         # Page components (Earn, Dashboard)
+└── Routes/                        # Application routing
 ```
 
 ## 🎨 Key Components
 
-### SwapPageModern.tsx
-- Intent input with natural language processing
-- Cross-chain route analysis and comparison
-- AI insights for optimal timing and cost savings
+### 🏠 **Homepage Features**
+- **ChaosHero**: Animated hero section with Web3 integration
+- **FeatureSection**: 6-card sticky scroll showcase with custom SVGs
+- **QuickActions**: Direct navigation to core platform features
 
-### Portfolio.tsx  
-- Multi-chain portfolio aggregation
-- AI-powered intent suggestions
-- Priority-based recommendation system
+### 💰 **Earn Components**  
+- **EarnPage**: Main staking interface with token selection
+- **StakingModal**: Modal for staking configuration and confirmation
+- **TokenService**: Backend integration for yield calculations
 
-## 🔮 Future Roadmap
+### 🔄 **Swap Components**
+- **SwapPageModern**: Advanced trading interface
+- **Multi-chain routing**: Cross-chain swap optimization
+- **Real-time pricing**: Live market data integration
 
-- **Advanced NLP**: GPT integration for complex intent parsing
-- **DeFi Strategy Engine**: Automated yield optimization
-- **Social Trading**: Intent sharing and copying
-- **Mobile App**: React Native implementation
+### 🎨 **UI System**
+- **Custom SVG Icons**: 6 themed icons matching platform features
+- **Tailwind Design System**: Consistent spacing and typography
+- **GSAP Animations**: Smooth scroll effects and interactions
+
+## 🔮 Roadmap & Future Features
+
+- **🤖 AI Integration**: Advanced intent parsing and automated strategies
+- **📱 Mobile App**: React Native implementation
+- **🏛️ Governance**: DAO features and community voting
+- **🔗 More Chains**: Solana, Cosmos, and emerging L1/L2 support
+- **📊 Advanced Analytics**: Portfolio performance insights and reporting
 
 ## 🏆 Project Highlights
 
-- **Innovation**: First truly intent-centric DeFi interface
-- **Technical Excellence**: Modern React + Web3 architecture
-- **User Experience**: Natural language → automated execution
-- **Multi-Chain**: Seamless cross-chain operations
-- **AI Integration**: Predictive portfolio management
+- **✨ Modern Design**: Clean, user-friendly interface with professional aesthetics
+- **🚀 Performance**: Optimized React architecture with lazy loading
+- **🔒 Security**: Best practices for Web3 integration and user fund protection
+- **🌐 Multi-Chain**: Seamless cross-chain operations and asset management
+- **💰 Yield Farming**: Competitive APYs with flexible staking periods
+- **📱 Responsive**: Mobile-first design works on all devices
 
-## 🎥 Demo
+## 🔗 Important Links
 
-**Live Demo**: [Your deployed URL]
-**Video Walkthrough**: [Your demo video URL]
+- **🌐 Live Demo**: [Deployed Application URL]
+- **📚 Documentation**: [Technical Documentation]
+- **🐙 GitHub**: https://github.com/TuanChao/web3
+- **🎥 Demo Video**: [Video Walkthrough]
+
+## ⚠️ Disclaimer
+
+This is a demonstration project. Do not use with real funds on mainnet. Always test with testnet tokens first.
 
 ## 📄 License
 
-MIT License
+MIT License - see LICENSE file for details
 
 ---
 
-**🚀 Empowering the next generation of DeFi through intent-centric design**
+**🚀 Building the future of user-centric DeFi experiences**
+
+*Remember: Connect your Web3 wallet to unlock the full potential of our Earn platform!*
